@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct QuizView: View {
+struct QuizMenuView: View {
     let contacts: [Contact]
     
     var body: some View {
@@ -35,5 +35,6 @@ struct QuizView: View {
 }
 
 #Preview {
-    QuizView(contacts: Contact.sampleData)
+    QuizMenuView(contacts: Contact.sampleData)
 }
+

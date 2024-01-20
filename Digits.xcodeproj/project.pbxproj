@@ -16,8 +16,8 @@
 		4C0209C92B57624D0013E015 /* DigitsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0209C82B57624D0013E015 /* DigitsUITestsLaunchTests.swift */; };
 		4C0209D72B5763070013E015 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0209D62B5763070013E015 /* Contacts.swift */; };
 		4C0209DA2B57663E0013E015 /* ContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0209D92B57663E0013E015 /* ContactCard.swift */; };
-		4C0209DC2B5773E50013E015 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0209DB2B5773E50013E015 /* QuizView.swift */; };
 		4C0209DE2B5776890013E015 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0209DD2B5776890013E015 /* MainView.swift */; };
+		4CFD5B702B5A08B000792DD0 /* QuizMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD5B6F2B5A08B000792DD0 /* QuizMenuView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,8 +50,8 @@
 		4C0209C82B57624D0013E015 /* DigitsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		4C0209D62B5763070013E015 /* Contacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
 		4C0209D92B57663E0013E015 /* ContactCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCard.swift; sourceTree = "<group>"; };
-		4C0209DB2B5773E50013E015 /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
 		4C0209DD2B5776890013E015 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		4CFD5B6F2B5A08B000792DD0 /* QuizMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizMenuView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,7 +150,7 @@
 				4C0209DD2B5776890013E015 /* MainView.swift */,
 				4C0209AD2B57624B0013E015 /* ContactView.swift */,
 				4C0209D92B57663E0013E015 /* ContactCard.swift */,
-				4C0209DB2B5773E50013E015 /* QuizView.swift */,
+				4CFD5B6F2B5A08B000792DD0 /* QuizMenuView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -286,9 +286,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C0209AE2B57624B0013E015 /* ContactView.swift in Sources */,
+				4CFD5B702B5A08B000792DD0 /* QuizMenuView.swift in Sources */,
 				4C0209DE2B5776890013E015 /* MainView.swift in Sources */,
 				4C0209AC2B57624B0013E015 /* DigitsApp.swift in Sources */,
-				4C0209DC2B5773E50013E015 /* QuizView.swift in Sources */,
 				4C0209DA2B57663E0013E015 /* ContactCard.swift in Sources */,
 				4C0209D72B5763070013E015 /* Contacts.swift in Sources */,
 			);

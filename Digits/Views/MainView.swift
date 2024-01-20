@@ -17,7 +17,7 @@ struct MainView: View {
                 .tabItem {
                     Label("Contacts", systemImage: "person.crop.circle.fill")
                 }
-            QuizView(contacts: contacts)
+            QuizMenuView(contacts: contacts)
                 .tabItem {
                     Label("Quiz", systemImage: "play")
                 }
