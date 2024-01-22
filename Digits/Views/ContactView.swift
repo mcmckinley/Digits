@@ -8,18 +8,49 @@
 import SwiftUI
 
 struct ContactView: View {
-    let contacts: [Contact]
+    @Binding var contacts: [Contact]
     
     var body: some View {
         NavigationStack {
-            List(contacts) { contact in
-                ContactCard(contact: contact)
+            List($contacts) { $contact in
+                if contact.enabledForQuiz {
+                    ContactCard(contact: $contact)
+                }
             }
-            .navigationTitle("All Contacts")
+            .navigationTitle("Digits Quiz")
+        }
+        
+        HStack {
+            Button(action: {
+                print("Settings!")
+            }) {
+                Text("Settings")
+                    .bold()
+                    .foregroundColor(.white)
+                    .padding([.top, .bottom], 15)
+                    .padding([.leading, .trailing], 61)
+                    .background(Color.gray)
+                    .cornerRadius(10)
+                
+            }
+            
+            Button(action: {
+                print("Begin!")
+            }) {
+                Text("Begin")
+                    .bold()
+                    .foregroundColor(.white)
+                    .padding([.top, .bottom], 15)
+                    .padding([.leading, .trailing], 70)
+                    .background(Color.blue)
+                    .cornerRadius(10)
+                
+            }
+            
         }
     }
 }
 
 #Preview {
-    ContactView(contacts: Contact.sampleData)
+    ContactView(contacts: .constant(Contact.sampleData))
 }

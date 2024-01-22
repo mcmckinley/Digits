@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContactCard: View {
-    let contact: Contact
+    @Binding var contact: Contact
     
     var body: some View {
         HStack {
@@ -18,6 +18,13 @@ struct ContactCard: View {
             Spacer()
             Text(contact.numberFull)
                 .bold()
+            /*
+            Button(action: {
+                
+            }) {
+                Image(systemName: "plus.circle.fill")
+            }
+             */
         }
         .padding(5)
     }
@@ -27,7 +34,7 @@ struct ContactCard_Previews: PreviewProvider {
     static var contact: Contact = Contact.sampleData[0]
     
     static var previews: some View {
-        ContactCard(contact: contact)
+        ContactCard(contact: .constant(contact))
             .previewLayout(.fixed(width: 400, height: 60))
     }
 }

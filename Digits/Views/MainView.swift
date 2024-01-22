@@ -9,22 +9,13 @@ import SwiftUI
 
 
 struct MainView: View {
-    let contacts: [Contact]
+    @State var contacts: [Contact] = Contact.sampleData
     
     var body: some View {
-        TabView {
-            ContactView(contacts: contacts)
-                .tabItem {
-                    Label("Contacts", systemImage: "person.crop.circle.fill")
-                }
-            QuizMenuView(contacts: contacts)
-                .tabItem {
-                    Label("Quiz", systemImage: "play")
-                }
-        }
+        ContactView(contacts: $contacts)
     }
 }
 
 #Preview {
-    MainView(contacts: Contact.sampleData)
+    MainView()
 }

@@ -13,23 +13,6 @@ struct QuizMenuView: View {
     var body: some View {
         VStack {
             Text("Quiz time..")
-            Spacer()
-            
-            
-            Button(action: {
-                // Action to perform when the button is tapped
-                print("Button tapped!")
-            }) {
-                Text("Begin")
-                    .bold()
-                    .foregroundColor(.white)
-                    .padding([.top, .bottom], 15)
-                    .padding([.leading, .trailing], 150)
-                    .background(Color.blue)
-                    .cornerRadius(10)
-                
-            }
-            .padding()
         }
     }
 }
