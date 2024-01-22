@@ -31,7 +31,6 @@ struct EditQuizSheet: View {
                             Text(contact.name)
                             Spacer()
                             Button(action : {
-                                print(contact.name)
                                 contact.enabled = false
                             }) {
                                 Image(systemName: "minus.circle.fill")
@@ -47,7 +46,6 @@ struct EditQuizSheet: View {
                             Text(contact.name)
                             Spacer()
                             Button(action : {
-                                print("Contact enabled")
                                 contact.enabled = true
                             }) {
                                 Image(systemName: "plus.circle.fill")
