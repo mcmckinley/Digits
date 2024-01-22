@@ -11,6 +11,7 @@ import SwiftUI
 struct EditQuizSheet: View {
     @Binding var contacts: [Contact]
     @Binding var time: Double
+    @State var isDisplayingAllContactsSheet: Bool = false
     
     var body: some View {
         Form {
@@ -25,12 +26,12 @@ struct EditQuizSheet: View {
             }
             Section(header: Text("Enabled contacts")) {
                 ForEach($contacts) { $contact in
-                    if contact.enabledForQuiz {
+                    if contact.isEnabledForQuiz {
                         HStack {
                             Text(contact.name)
                             Spacer()
                             Button(action : {
-                                contact.enabledForQuiz = false
+                                contact.isEnabledForQuiz = false
                             }) {
                                 Image(systemName: "minus.circle.fill")
                             }
@@ -40,12 +41,12 @@ struct EditQuizSheet: View {
             }
             Section(header: Text("Disabled contacts")) {
                 ForEach($contacts) { $contact in
-                    if !contact.enabledForQuiz {
+                    if !contact.isEnabledForQuiz {
                         HStack {
                             Text(contact.name)
                             Spacer()
                             Button(action : {
-                                contact.enabledForQuiz = true
+                                contact.isEnabledForQuiz = true
                             }) {
                                 Image(systemName: "plus.circle.fill")
                             }
@@ -58,12 +59,15 @@ struct EditQuizSheet: View {
                     Text("See All Contacts")
                     Spacer()
                     Button(action : {
-                        AllContactsView(contacts: $contacts)
+                        isDisplayingAllContactsSheet = true;
                     }) {
                         Image(systemName: "chevron.right")
                     }
                 }
             }
+        }
+        .sheet(isPresented: $isDisplayingAllContactsSheet) {
+            AllContactsView(contacts: $contacts)
         }
     }
 }
