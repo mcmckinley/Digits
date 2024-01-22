@@ -26,12 +26,13 @@ struct EditQuizSheet: View {
             }
             Section(header: Text("Enabled contacts")) {
                 ForEach($contacts) { $contact in
-                    if contact.isEnabledForQuiz {
+                    if contact.enabled {
                         HStack {
                             Text(contact.name)
                             Spacer()
                             Button(action : {
-                                contact.isEnabledForQuiz = false
+                                print(contact.name)
+                                contact.enabled = false
                             }) {
                                 Image(systemName: "minus.circle.fill")
                             }
@@ -41,12 +42,13 @@ struct EditQuizSheet: View {
             }
             Section(header: Text("Disabled contacts")) {
                 ForEach($contacts) { $contact in
-                    if !contact.isEnabledForQuiz {
+                    if !contact.enabled && contact.allowed {
                         HStack {
                             Text(contact.name)
                             Spacer()
                             Button(action : {
-                                contact.isEnabledForQuiz = true
+                                print("Contact enabled")
+                                contact.enabled = true
                             }) {
                                 Image(systemName: "plus.circle.fill")
                             }

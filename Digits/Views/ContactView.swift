@@ -15,7 +15,7 @@ struct ContactView: View {
     var body: some View {
         NavigationStack {
             List($contacts) { $contact in
-                if contact.isEnabledForQuiz {
+                if contact.enabled {
                     ContactCard(contact: $contact)
                 }
             }

@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct MainView: View {
-    @State var contacts: [Contact] = Contact.sampleData
+    @Binding var contacts: [Contact]
     
     var body: some View {
         ContactView(contacts: $contacts)
@@ -17,5 +17,5 @@ struct MainView: View {
 }
 
 #Preview {
-    MainView()
+    MainView(contacts: .constant(Contact.sampleData))
 }

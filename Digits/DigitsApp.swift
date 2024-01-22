@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct DigitsApp: App {
+    @State var contacts: [Contact] = Contact.sampleData
     var body: some Scene {
         WindowGroup {
-            MainView(contacts: Contact.sampleData)
+            MainView(contacts: $contacts)
         }
     }
 }

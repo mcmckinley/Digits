@@ -12,10 +12,37 @@ struct AllContactsView: View {
     
     var body: some View {
         Form {
-            ForEach(contacts) {contact in
-                
-                Text(contact.name)
-                
+            Section(header: Text("contacts to show in app")) {
+                ForEach($contacts) { $contact in
+                    if contact.allowed {
+                        HStack {
+                            Text(contact.name)
+                            Spacer()
+                            Button(action : {
+                                contact.enabled = false
+                                contact.allowed = false
+                            }) {
+                                Image(systemName: "minus.circle.fill")
+                            }
+                        }
+                    }
+                }
+            }
+            Section(header: Text("contacts to ignore")) {
+                ForEach($contacts) { $contact in
+                    if !contact.allowed {
+                        HStack {
+                            Text(contact.name)
+                            Spacer()
+                            Button(action : {
+                                contact.allowed = true
+                                contact.enabled = false
+                            }) {
+                                Image(systemName: "plus.circle.fill")
+                            }
+                        }
+                    }
+                }
             }
             
         }
