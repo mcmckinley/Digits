@@ -18,13 +18,6 @@ struct ContactCard: View {
             Spacer()
             Text(contact.numberFull)
                 .bold()
-            /*
-            Button(action: {
-                
-            }) {
-                Image(systemName: "plus.circle.fill")
-            }
-             */
         }
         .padding(5)
     }

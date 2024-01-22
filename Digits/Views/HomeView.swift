@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContactView: View {
+struct HomeView: View {
     @Binding var contacts: [Contact]
     @State private var isPresentingSettingsView = false
     @State private var timePerQuestion: Double = 8.0
@@ -58,5 +58,5 @@ struct ContactView: View {
 }
 
 #Preview {
-    ContactView(contacts: .constant(Contact.sampleData))
+    HomeView(contacts: .constant(Contact.sampleData))
 }
