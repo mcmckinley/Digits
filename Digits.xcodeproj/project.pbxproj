@@ -18,6 +18,9 @@
 		4C0209DA2B57663E0013E015 /* ContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0209D92B57663E0013E015 /* ContactCard.swift */; };
 		4C0209DE2B5776890013E015 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0209DD2B5776890013E015 /* MainView.swift */; };
 		4C9F1AE82B5EF42200407198 /* EditQuizSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9F1AE72B5EF42200407198 /* EditQuizSheet.swift */; };
+		4C9F1AEA2B5F062D00407198 /* AllContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9F1AE92B5F062D00407198 /* AllContactsView.swift */; };
+		4C9F1AEC2B5F0BAC00407198 /* MultiSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9F1AEB2B5F0BAC00407198 /* MultiSelector.swift */; };
+		4C9F1AEE2B5F0BBB00407198 /* MultiSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9F1AED2B5F0BBB00407198 /* MultiSelectorView.swift */; };
 		4CFD5B702B5A08B000792DD0 /* QuizMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD5B6F2B5A08B000792DD0 /* QuizMenuView.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +56,9 @@
 		4C0209D92B57663E0013E015 /* ContactCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCard.swift; sourceTree = "<group>"; };
 		4C0209DD2B5776890013E015 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		4C9F1AE72B5EF42200407198 /* EditQuizSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditQuizSheet.swift; sourceTree = "<group>"; };
+		4C9F1AE92B5F062D00407198 /* AllContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllContactsView.swift; sourceTree = "<group>"; };
+		4C9F1AEB2B5F0BAC00407198 /* MultiSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSelector.swift; sourceTree = "<group>"; };
+		4C9F1AED2B5F0BBB00407198 /* MultiSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSelectorView.swift; sourceTree = "<group>"; };
 		4CFD5B6F2B5A08B000792DD0 /* QuizMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizMenuView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -154,6 +160,9 @@
 				4C0209D92B57663E0013E015 /* ContactCard.swift */,
 				4CFD5B6F2B5A08B000792DD0 /* QuizMenuView.swift */,
 				4C9F1AE72B5EF42200407198 /* EditQuizSheet.swift */,
+				4C9F1AE92B5F062D00407198 /* AllContactsView.swift */,
+				4C9F1AEB2B5F0BAC00407198 /* MultiSelector.swift */,
+				4C9F1AED2B5F0BBB00407198 /* MultiSelectorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -289,10 +298,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C0209AE2B57624B0013E015 /* ContactView.swift in Sources */,
+				4C9F1AEE2B5F0BBB00407198 /* MultiSelectorView.swift in Sources */,
 				4CFD5B702B5A08B000792DD0 /* QuizMenuView.swift in Sources */,
 				4C0209DE2B5776890013E015 /* MainView.swift in Sources */,
+				4C9F1AEA2B5F062D00407198 /* AllContactsView.swift in Sources */,
 				4C0209AC2B57624B0013E015 /* DigitsApp.swift in Sources */,
 				4C0209DA2B57663E0013E015 /* ContactCard.swift in Sources */,
+				4C9F1AEC2B5F0BAC00407198 /* MultiSelector.swift in Sources */,
 				4C9F1AE82B5EF42200407198 /* EditQuizSheet.swift in Sources */,
 				4C0209D72B5763070013E015 /* Contacts.swift in Sources */,
 			);

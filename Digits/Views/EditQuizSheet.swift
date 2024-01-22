@@ -19,10 +19,8 @@ struct EditQuizSheet: View {
                     Slider(value: $time, in: 5...60, step: 1) {
                         Text("Length")
                     }
-                    .accessibilityValue("minutes")
                     Spacer()
                     Text("\(time) seconds")
-                        .accessibilityHidden(true)
                 }
             }
             Section(header: Text("Enabled contacts")) {
@@ -52,6 +50,17 @@ struct EditQuizSheet: View {
                                 Image(systemName: "plus.circle.fill")
                             }
                         }
+                    }
+                }
+            }
+            Section(header: Text("Additional Settings")){
+                HStack {
+                    Text("See All Contacts")
+                    Spacer()
+                    Button(action : {
+                        AllContactsView(contacts: $contacts)
+                    }) {
+                        Image(systemName: "chevron.right")
                     }
                 }
             }
