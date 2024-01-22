@@ -8,7 +8,7 @@
 import SwiftUI
 
 
-struct QuizEditSheet: View {
+struct EditQuizSheet: View {
     @Binding var contacts: [Contact]
     @Binding var time: Double
     
@@ -28,45 +28,40 @@ struct QuizEditSheet: View {
             Section(header: Text("Enabled contacts")) {
                 ForEach($contacts) { $contact in
                     if contact.enabledForQuiz {
-                        Text(contact.name)
-                    }
-                }
-                
-                
-                
-                /*
-                HStack {
-                    Button(action: {
-                        withAnimation {
-                            let attendee = DailyScrum.Attendee(name: newAttendeeName)
-                            scrum.attendees.append(attendee)
-                            newAttendeeName = ""
+                        HStack {
+                            Text(contact.name)
+                            Spacer()
+                            Button(action : {
+                                contact.enabledForQuiz = false
+                            }) {
+                                Image(systemName: "minus.circle.fill")
+                            }
                         }
-                    }) {
-                        Image(systemName: "plus.circle.fill")
-                            .accessibilityLabel("Add attendee")
                     }
-                    .disabled(newAttendeeName.isEmpty)
                 }
-                */
             }
             Section(header: Text("Disabled contacts")) {
                 ForEach($contacts) { $contact in
                     if !contact.enabledForQuiz {
-                        Text(contact.name)
+                        HStack {
+                            Text(contact.name)
+                            Spacer()
+                            Button(action : {
+                                contact.enabledForQuiz = true
+                            }) {
+                                Image(systemName: "plus.circle.fill")
+                            }
+                        }
                     }
                 }
             }
-            
-            
         }
     }
 }
 
-struct QuizEditSheet_Previews: PreviewProvider {
+struct EditQuizSheet_Previews: PreviewProvider {
     static var time: Double = 20.0
     static var previews: some View {
-        QuizEditSheet(contacts: .constant(Contact.sampleData), time: .constant(time))
-
+        EditQuizSheet(contacts: .constant(Contact.sampleData), time: .constant(time))
     }
 }

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ContactView: View {
     @Binding var contacts: [Contact]
+    @State private var isPresentingSettingsView = false
+    @State private var timePerQuestion: Double = 8.0
     
     var body: some View {
         NavigationStack {
@@ -23,6 +25,7 @@ struct ContactView: View {
         HStack {
             Button(action: {
                 print("Settings!")
+                isPresentingSettingsView = true
             }) {
                 Text("Settings")
                     .bold()
@@ -47,6 +50,9 @@ struct ContactView: View {
                 
             }
             
+        }
+        .sheet(isPresented: $isPresentingSettingsView) {
+            EditQuizSheet(contacts: $contacts, time: $timePerQuestion)
         }
     }
 }
