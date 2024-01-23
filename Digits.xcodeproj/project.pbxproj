@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4C0209AC2B57624B0013E015 /* DigitsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0209AB2B57624B0013E015 /* DigitsApp.swift */; };
-		4C0209AE2B57624B0013E015 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0209AD2B57624B0013E015 /* HomeView.swift */; };
 		4C0209B02B57624D0013E015 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C0209AF2B57624D0013E015 /* Assets.xcassets */; };
 		4C0209B32B57624D0013E015 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C0209B22B57624D0013E015 /* Preview Assets.xcassets */; };
 		4C0209BD2B57624D0013E015 /* DigitsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0209BC2B57624D0013E015 /* DigitsTests.swift */; };
@@ -18,6 +17,7 @@
 		4C0209DA2B57663E0013E015 /* ContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0209D92B57663E0013E015 /* ContactCard.swift */; };
 		4C9F1AE82B5EF42200407198 /* EditQuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9F1AE72B5EF42200407198 /* EditQuizView.swift */; };
 		4C9F1AEA2B5F062D00407198 /* AllContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9F1AE92B5F062D00407198 /* AllContactsView.swift */; };
+		4C9F1AF42B5F438400407198 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9F1AF32B5F438400407198 /* HomeView.swift */; };
 		4CFD5B702B5A08B000792DD0 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD5B6F2B5A08B000792DD0 /* QuizView.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,7 +41,6 @@
 /* Begin PBXFileReference section */
 		4C0209A82B57624B0013E015 /* Digits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Digits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C0209AB2B57624B0013E015 /* DigitsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitsApp.swift; sourceTree = "<group>"; };
-		4C0209AD2B57624B0013E015 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4C0209AF2B57624D0013E015 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C0209B22B57624D0013E015 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4C0209B82B57624D0013E015 /* DigitsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DigitsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,6 +52,7 @@
 		4C0209D92B57663E0013E015 /* ContactCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCard.swift; sourceTree = "<group>"; };
 		4C9F1AE72B5EF42200407198 /* EditQuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditQuizView.swift; sourceTree = "<group>"; };
 		4C9F1AE92B5F062D00407198 /* AllContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllContactsView.swift; sourceTree = "<group>"; };
+		4C9F1AF32B5F438400407198 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4CFD5B6F2B5A08B000792DD0 /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,7 +149,7 @@
 		4C0209D82B5764A80013E015 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4C0209AD2B57624B0013E015 /* HomeView.swift */,
+				4C9F1AF32B5F438400407198 /* HomeView.swift */,
 				4C0209D92B57663E0013E015 /* ContactCard.swift */,
 				4CFD5B6F2B5A08B000792DD0 /* QuizView.swift */,
 				4C9F1AE72B5EF42200407198 /* EditQuizView.swift */,
@@ -288,13 +288,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C0209AE2B57624B0013E015 /* HomeView.swift in Sources */,
 				4CFD5B702B5A08B000792DD0 /* QuizView.swift in Sources */,
 				4C9F1AEA2B5F062D00407198 /* AllContactsView.swift in Sources */,
 				4C0209AC2B57624B0013E015 /* DigitsApp.swift in Sources */,
 				4C0209DA2B57663E0013E015 /* ContactCard.swift in Sources */,
 				4C9F1AE82B5EF42200407198 /* EditQuizView.swift in Sources */,
 				4C0209D72B5763070013E015 /* Contact.swift in Sources */,
+				4C9F1AF42B5F438400407198 /* HomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
