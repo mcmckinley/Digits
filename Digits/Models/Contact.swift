@@ -44,8 +44,8 @@ struct Contact: Identifiable {
     static let sampleData: [Contact] =
     [
         Contact(name: "Ones",   number: "1111111111", enabled: true,  allowed: true),
-        Contact(name: "Twos",   number: "2222222222", enabled: false, allowed: true),
-        Contact(name: "Threes", number: "3333333333"),
+        Contact(name: "Twos",   number: "2222222222", enabled: true,  allowed: true),
+        Contact(name: "Threes", number: "3333333333", enabled: true,  allowed: true),
     
         Contact(name: "Fours",  number: "4444444444"),
         Contact(name: "Fives",  number: "5555555555"),

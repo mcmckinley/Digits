@@ -14,32 +14,27 @@ struct QuizView: View {
     @State var phoneNumber: String = ""
     @FocusState private var isFocused: Bool
 
+    @State var responses: [String] = []
+    
     var body: some View {
-        
-        
         let testContact = contacts[0]
-        
-        VStack {
-            Text(phoneNumber)
-                .font(.system(size: 24))
-
-            TextField("Enter \(testContact.name)'s number:", text: $phoneNumber)
-                .keyboardType(.numberPad)
-                .font(.system(size: 24))
-                .focused($isFocused)
-                .padding([.leading], 3)
-                .onChange(of: phoneNumber, initial: false) { newPhoneNumber, what in
-                    if newPhoneNumber.count == 9 {
-                    // Perform your desired action when 10 characters are entered
-                    print("Phone number entered: \(newPhoneNumber)")
-                    // Disable the keypad or perform any other action here
-                    isFocused = false
+        TextField("Enter \(testContact.name)'s number:", text: $phoneNumber)
+            .keyboardType(.numberPad)
+            .font(.system(size: 24))
+            .focused($isFocused)
+            .padding([.leading], 3)
+            .onChange(of: phoneNumber, initial: false) { previousNumber, currentNumber in
+                if currentNumber.count == 10 {
+                    print("Phone number entered: \(currentNumber)")
+                    phoneNumber = ""
                 }
             }
-        }
-        .onAppear {
-            isFocused = true
-        }
+            .onAppear {
+                isFocused = true
+            }
+        
+        
+        // Potentially will want this code in the TextField, to prevent any non-numerical answers
         /*
                     .onReceive(Just(enteredNum)) { newValue in
                         let filtered = newValue.filter { "0123456789".contains($0) }

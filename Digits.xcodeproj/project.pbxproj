@@ -18,6 +18,7 @@
 		4C9F1AE82B5EF42200407198 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9F1AE72B5EF42200407198 /* SettingsView.swift */; };
 		4C9F1AEA2B5F062D00407198 /* AllContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9F1AE92B5F062D00407198 /* AllContactsView.swift */; };
 		4C9F1AF42B5F438400407198 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9F1AF32B5F438400407198 /* HomeView.swift */; };
+		4CB0D2DD2B60D959004FB8E6 /* AnswerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0D2DC2B60D959004FB8E6 /* AnswerCard.swift */; };
 		4CFD5B702B5A08B000792DD0 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD5B6F2B5A08B000792DD0 /* QuizView.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		4C9F1AE72B5EF42200407198 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		4C9F1AE92B5F062D00407198 /* AllContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllContactsView.swift; sourceTree = "<group>"; };
 		4C9F1AF32B5F438400407198 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		4CB0D2DC2B60D959004FB8E6 /* AnswerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCard.swift; sourceTree = "<group>"; };
 		4CFD5B6F2B5A08B000792DD0 /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -150,10 +152,11 @@
 			isa = PBXGroup;
 			children = (
 				4C9F1AF32B5F438400407198 /* HomeView.swift */,
-				4CFD5B6F2B5A08B000792DD0 /* QuizView.swift */,
+				4C0209D92B57663E0013E015 /* ContactCard.swift */,
 				4C9F1AE72B5EF42200407198 /* SettingsView.swift */,
 				4C9F1AE92B5F062D00407198 /* AllContactsView.swift */,
-				4C0209D92B57663E0013E015 /* ContactCard.swift */,
+				4CFD5B6F2B5A08B000792DD0 /* QuizView.swift */,
+				4CB0D2DC2B60D959004FB8E6 /* AnswerCard.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				4C0209DA2B57663E0013E015 /* ContactCard.swift in Sources */,
 				4C9F1AE82B5EF42200407198 /* SettingsView.swift in Sources */,
 				4C0209D72B5763070013E015 /* Contact.swift in Sources */,
+				4CB0D2DD2B60D959004FB8E6 /* AnswerCard.swift in Sources */,
 				4C9F1AF42B5F438400407198 /* HomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
