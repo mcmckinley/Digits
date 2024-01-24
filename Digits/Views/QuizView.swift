@@ -24,16 +24,34 @@ struct QuizView: View {
         
         
         
-        let testContact = contacts[0]
+        //let testContact = contacts[0]
         ZStack {
-            HStack {
-                ForEach(userEntryArray, id: \.self) { char in
+            
+            // Dynamic display of the user-entered phone number
+            HStack (spacing: 0){
+                Spacer().frame(width: 20)
+                ForEach(Array(userEntryArray.enumerated()), id: \.element) { index, char in
                     Text(char)
-                        .font(.system(size: 24))
+                        .font(.system(size: 30))
+                        .padding([.trailing], 8)
+                        .fontDesign(.monospaced)
+                    
+                    // Currently, these conditions will not execute
+                    if index == 2 {
+                        Spacer().frame(width: 12)
+                        //Spacer(minLength: 12)
+
+                    }
+                    if index == 5 {
+                        Spacer().frame(width: 12)
+                        //Spacer(minLength: 12)
+                    }
                 }
                 Spacer()
-                
             }
+            
+            
+            // Where the program receives input
             TextField("", text: $phoneNumber)
                 .keyboardType(.numberPad)
                 .opacity(0)
@@ -43,11 +61,8 @@ struct QuizView: View {
                 .onChange(of: phoneNumber, initial: false) { previousNumber, currentNumber in
                     
                     userEntryArray = phoneNumber.map{String($0)}
-                    for entry in userEntryArray {
-                        print("Entry:  \(entry)")
-                    }
                     
-                    // If the phone number is complete...
+                 // If the phone number is complete...
                     if currentNumber.count == 10 {
                         print("Phone number entered: \(currentNumber)")
                         phoneNumber = ""
@@ -56,6 +71,7 @@ struct QuizView: View {
                 .onAppear {
                     isFocused = true
             }
+            // The underlying frame: (___)___-____
             PhoneNumberFrameCard()
         }
     }
