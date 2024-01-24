@@ -15,8 +15,12 @@ struct QuizView: View {
     @FocusState private var isFocused: Bool
 
     @State var responses: [String] = []
+    @State var index: Int = 0
     
     var body: some View {
+        // MAYBE we instead type it all to an invisible text box, and have a seperate function which displays it to each box, rather than split it up and divide the FocusState
+        
+        
         let testContact = contacts[0]
         TextField("Enter \(testContact.name)'s number:", text: $phoneNumber)
             .keyboardType(.numberPad)
@@ -32,19 +36,6 @@ struct QuizView: View {
             .onAppear {
                 isFocused = true
             }
-        
-        
-        // Potentially will want this code in the TextField, to prevent any non-numerical answers
-        /*
-                    .onReceive(Just(enteredNum)) { newValue in
-                        let filtered = newValue.filter { "0123456789".contains($0) }
-                        if filtered != newValue {
-                            self.enteredNum = filtered
-                        }
-                    }
-         */
-        
-        
     }
 }
 
