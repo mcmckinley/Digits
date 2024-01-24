@@ -11,76 +11,77 @@ struct PhoneNumberFrameCard: View {
     var body: some View {
         HStack(spacing: 0){
             Text("(")
-                .font(.system(size: 30))
+                .font(.system(size: 32, design: .rounded))
                 .padding(3)
             VStack {
                 Spacer().frame(height: 16)
                 Text("_")
-                    .font(.system(size: 30))
+                    .font(.system(size: 40, design: .rounded))
                     .padding(2)
             }
             VStack {
                 Spacer().frame(height: 16)
                 Text("_")
-                    .font(.system(size: 30))
+                    .font(.system(size: 40, design: .rounded))
                     .padding(2)
 
             }
             VStack {
                 Spacer().frame(height: 16)
                 Text("_")
-                    .font(.system(size: 30))
+                    .font(.system(size: 40, design: .rounded))
                     .padding(2)
 
             }
             Text(")")
-                .font(.system(size: 30))
+                .font(.system(size: 32, design: .rounded))
             VStack {
                 Spacer().frame(height: 16)
                 Text("_")
-                    .font(.system(size: 30))
+                    .font(.system(size: 40, design: .rounded))
                     .padding(2)
             }
             VStack {
                 Spacer().frame(height: 16)
                 Text("_")
-                    .font(.system(size: 30))
+                    .font(.system(size: 40, design: .rounded))
                     .padding(2)
 
             }
             VStack {
                 Spacer().frame(height: 16)
                 Text("_")
-                    .font(.system(size: 30))
+                    .font(.system(size: 40, design: .rounded))
                     .padding(2)
             }
             Text("-")
-                .font(.system(size: 30))
+                .font(.system(size: 32, design: .rounded))
             VStack {
                 Spacer().frame(height: 16)
                 Text("_")
-                    .font(.system(size: 30))
+                    .font(.system(size: 40, design: .rounded))
                     .padding(2)
             }
             VStack {
                 Spacer().frame(height: 16)
                 Text("_")
-                    .font(.system(size: 30))
+                    .font(.system(size: 40, design: .rounded))
                     .padding(2)
 
             }
             VStack {
                 Spacer().frame(height: 16)
                 Text("_")
-                    .font(.system(size: 30))
+                    .font(.system(size: 40, design: .rounded))
                     .padding(2)
             }
             VStack {
                 Spacer().frame(height: 16)
                 Text("_")
-                    .font(.system(size: 30))
+                    .font(.system(size: 40, design: .rounded))
                     .padding(2)
             }
+            Spacer()
         }
         .foregroundColor(.gray)
     }
