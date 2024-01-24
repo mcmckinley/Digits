@@ -13,38 +13,31 @@ struct QuizView: View {
     
     @State var phoneNumber: String = ""
     @FocusState private var isFocused: Bool
-
-    @State var responses: [String] = []
-    @State var index: Int = 0
     
-    @State private var userEntryArray: [String] = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+    @State private var userEntryArray: [String] = []
     
     var body: some View {
-        // MAYBE we instead type it all to an invisible text box, and have a seperate function which displays it to each box, rather than split it up and divide the FocusState
+        // Using a ZStack to display each element on top of each other
+        // a) - The characters as they are typed
+        // b) - The TextField that accepts the user's input
+        // c) - The phone number frame: (___)___-____
         
-        
-        
-        //let testContact = contacts[0]
         ZStack {
-            
             // Dynamic display of the user-entered phone number
             HStack (spacing: 0){
                 Spacer().frame(width: 20)
-                ForEach(Array(userEntryArray.enumerated()), id: \.element) { index, char in
+                // Not sure how this next line works, needed openAI to help me here
+                ForEach(Array(userEntryArray.enumerated()), id: \.0) { index, char in
                     Text(char)
                         .font(.system(size: 30))
                         .padding([.trailing], 8)
                         .fontDesign(.monospaced)
-                    
                     // Currently, these conditions will not execute
                     if index == 2 {
                         Spacer().frame(width: 12)
-                        //Spacer(minLength: 12)
-
                     }
                     if index == 5 {
                         Spacer().frame(width: 12)
-                        //Spacer(minLength: 12)
                     }
                 }
                 Spacer()
@@ -62,16 +55,20 @@ struct QuizView: View {
                     
                     userEntryArray = phoneNumber.map{String($0)}
                     
-                 // If the phone number is complete...
+                    // If the phone number is complete...
                     if currentNumber.count == 10 {
                         print("Phone number entered: \(currentNumber)")
                         phoneNumber = ""
+                        
+                        // Will I need this?
+                        //userEntryArray = []
                     }
                 }
                 .onAppear {
                     isFocused = true
             }
-            // The underlying frame: (___)___-____
+            
+            // The underlying frame
             PhoneNumberFrameCard()
         }
     }
