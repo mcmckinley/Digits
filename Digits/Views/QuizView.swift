@@ -14,7 +14,7 @@ struct QuizView: View {
     @State var phoneNumber: String = ""
     @FocusState private var isFocused: Bool
     
-    @State private var userEntryArray: [String] = []
+    @State private var userEntryArray: [String] = ["1", "1","1","1","1","1","1","1","1","1"]
     
     var body: some View {
         // Using a ZStack to display each element on top of each other
@@ -25,19 +25,19 @@ struct QuizView: View {
         ZStack {
             // Dynamic display of the user-entered phone number
             HStack (spacing: 0){
-                Spacer().frame(width: 20)
+                Spacer().frame(width: 32)
                 // Not sure how this next line works, needed openAI to help me here
                 ForEach(Array(userEntryArray.enumerated()), id: \.0) { index, char in
                     Text(char)
                         .font(.system(size: 30))
-                        .padding([.trailing], 8)
+                        .padding([.trailing], 7)
                         .fontDesign(.monospaced)
                     // Currently, these conditions will not execute
                     if index == 2 {
-                        Spacer().frame(width: 12)
+                        Spacer().frame(width: 23)
                     }
                     if index == 5 {
-                        Spacer().frame(width: 12)
+                        Spacer().frame(width: 18)
                     }
                 }
                 Spacer()
