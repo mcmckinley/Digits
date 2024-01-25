@@ -21,9 +21,11 @@ struct QuizView: View {
     @FocusState private var isFocused: Bool
     
     // List of the user's responses
-    @State private var responses: [Response] = []
+    @State private var responses: [Response] = Response.sampleData
     
     @State private var currentContact: Contact = Contact.sampleData[0]
+    
+    @State var listYPosition: Double = 30.0
     
 
     var body: some View {
@@ -32,11 +34,14 @@ struct QuizView: View {
         // b) - The TextField that accepts the user's input
         // c) - The phone number frame: (___)___-____
         
-        VStack {
-            List(responses) {response in
-                AnswerCard(response: response)
-            }
+        List(responses) {response in
+            AnswerCard(response: response)
         }
+        //.listRowSeparator(.hidden)
+        //.listSectionSeparator(.hidden)
+        .environment(\.defaultMinListRowHeight, 70)
+        .listStyle(.plain)
+        .position(CGPoint(x: 200.0, y: 200.0))
         
         ZStack {
             // Dynamic display of the user-entered phone number
@@ -45,7 +50,7 @@ struct QuizView: View {
                 // Not sure how this next line works, needed openAI to help me here
                 ForEach(Array(userEntryArray.enumerated()), id: \.0) { index, char in
                     Text(char)
-                        .font(.system(size: 30))
+                        .font(.system(size: 32))
                         .padding([.trailing], 7)
                         .fontDesign(.monospaced)
                     // Currently, these conditions will not execute
@@ -87,6 +92,7 @@ struct QuizView: View {
             // The underlying frame
             PhoneNumberFrameCard()
         }
+        .position(CGPoint(x: 200.0, y: 30.0))
     }
 }
 
