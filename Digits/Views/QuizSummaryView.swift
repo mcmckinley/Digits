@@ -47,20 +47,28 @@ struct QuizSummaryView: View {
 
     }
     
-    
-    
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             Text(message)
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .padding()
-            Text("\(numCorrect)/\(responses.count) correct answers ")
-                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-            Text("\(accuracy) accuracy ")
-                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                .padding([.bottom], 8)
+            Text("Results:")
+                .font(.headline)
+            HStack (spacing: 0){
+                Text("\(numCorrect)/\(responses.count)")
+                    .fontWeight(.bold)
+                Text(" correct answers")
+            }
+            HStack (spacing: 0){
+                Text("\(accuracy)%")
+                    .fontWeight(.bold)
+                Text(" accuracy")
+            }
+            .padding([.bottom], 12)
         }
+        .frame(maxWidth: .infinity)
+        .frame(width: UIScreen.main.bounds.width - 80)
         .background(
             RoundedRectangle(cornerRadius: 10)
                 .foregroundStyle(rectangleColor)
@@ -91,7 +99,6 @@ struct QuizSummaryView: View {
                 
             }
         }
-        
     }
 }
 
