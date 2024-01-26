@@ -26,9 +26,57 @@ struct QuizView: View {
     // Current contact in question
     @State private var currentContact: Contact = Contact.sampleData[0]
     
+    @Environment(\.colorScheme) var colorScheme
+
     // Red and green flashing after responses
     @State var redFeedback: Double = 0
     @State var greenFeedback: Double = 0
+    @State var blueFeedback: Double = 0
+    
+    private func feedback(correct: Bool){
+        if correct && colorScheme == .light {
+            greenFeedback = 1
+            Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+                greenFeedback -= 0.1
+                if greenFeedback <= 0 {
+                    timer.invalidate()
+                }
+            }
+        } else if !correct && colorScheme == .light {
+            redFeedback = 1
+            Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+                redFeedback -= 0.05
+                if redFeedback <= 0 {
+                    timer.invalidate()
+                }
+            }
+        } else if correct { // } && colorScheme == .dark {
+            redFeedback = 0
+            blueFeedback = 0
+            Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+                redFeedback += 0.1
+                blueFeedback += 0.1
+                if redFeedback >= 1 {
+                    timer.invalidate()
+                }
+            }
+        } else { // if !correct && colorScheme == .dark
+            greenFeedback = 0
+            blueFeedback = 0
+            Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+                greenFeedback += 0.1
+                blueFeedback += 0.1
+                if greenFeedback >= 1 {
+                    timer.invalidate()
+                }
+            }
+        }
+    }
+    private func updateColors(){
+        redFeedback   = colorScheme == .light ? 0 : 1
+        blueFeedback  = colorScheme == .light ? 0 : 1
+        greenFeedback = colorScheme == .light ? 0 : 1
+    }
 
     var body: some View {
         VStack {
@@ -46,7 +94,10 @@ struct QuizView: View {
                     .bold()
                 Spacer()
             }
-            .foregroundColor(Color(red: redFeedback, green: greenFeedback, blue:0))
+            .foregroundColor(Color(red: redFeedback, green: greenFeedback, blue: blueFeedback))
+            .onChange(of: colorScheme, initial: true) { newColorScheme, a in
+                updateColors()
+            }
 
             
             // The number you just entered
@@ -96,37 +147,15 @@ struct QuizView: View {
                             userEntryArray = phoneNumber.map{String($0)}
                             
                             if currentNumber.count == 10 {
-                                print("Phone number entered: \(currentNumber)")
                                 responses.append(Response(answer: currentContact.number, userResponse: phoneNumber))
                                 
                                 // If a correct asnwer is given, assign a new random contact
                                 if let lastResponse = responses.last, let randomContact = Contact.sampleData.randomElement() {
+                                    feedback(correct: lastResponse.isCorrect)
                                     phoneNumber = ""
 
                                     if lastResponse.isCorrect {
                                         currentContact = randomContact
-                                        
-                                        greenFeedback = 1
-                                        
-                                        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
-                                            print(greenFeedback)
-                                            greenFeedback -= 0.05
-
-                                            if greenFeedback <= 0 {
-                                                timer.invalidate()
-                                            }
-                                        }
-                                    } else {
-                                        redFeedback = 1
-                                        
-                                        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
-                                            print(redFeedback)
-                                            redFeedback -= 0.05
-
-                                            if redFeedback <= 0 {
-                                                timer.invalidate()
-                                            }
-                                        }
                                     }
                                 }
                             }
@@ -135,6 +164,7 @@ struct QuizView: View {
             }
         }
     }
+    
 }
 
 #Preview {
