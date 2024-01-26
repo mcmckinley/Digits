@@ -9,7 +9,7 @@ struct QuizView: View {
     
     var body: some View {
         if quizIsFinished {
-            QuizSummaryView(responses: responses)
+            QuizSummaryView(responses: responses, quizIsFinished: $quizIsFinished)
         } else {
             QuizActiveView(contacts: contacts, responses: $responses, quizIsFinished: $quizIsFinished)
         }

@@ -35,7 +35,7 @@ struct Response: Identifiable {
     
     static let sampleData: [Response] =
     [
-        Response(answer: "1111111111", userResponse: "1234567890"),
-        Response(answer: "1111111111", userResponse: "1122112211")
+        Response(answer: "1111111111", userResponse: "1111111111"),
+        Response(answer: "1111111111", userResponse: "1111111111")
     ]
 }

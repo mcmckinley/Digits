@@ -6,6 +6,7 @@ struct HomeView: View {
     
     @State private var isPresentingSettingsView = false
     @State private var timePerQuestion: Double = 8.0
+    @State var isInQuizView = false
 
     var body: some View {
         NavigationStack {
