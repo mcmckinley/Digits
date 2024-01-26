@@ -21,9 +21,12 @@ struct QuizView: View {
     @FocusState private var isFocused: Bool
     
     // List of the user's responses
-    @State private var responses: [Response] = Response.sampleData
+    @State private var responses: [Response] = [] //Response.sampleData
     
     @State private var currentContact: Contact = Contact.sampleData[0]
+    
+    @State var redFeedback: Double = 0
+    @State var greenFeedback: Double = 0
     
 
     var body: some View {
@@ -42,17 +45,20 @@ struct QuizView: View {
                 Text("\(currentContact.name)'s")
                     .font(.title)
                     .bold()
+                    .foregroundColor(Color(red: redFeedback, green: greenFeedback, blue:0))
                 Text("digits:")
                     .font(.title)
                     .bold()
                 Spacer()
             }
             
+
+            
             HStack {
-                if responses.count == 0 {
-                    BlankCard()
+                if let lastResponse = responses.last {
+                    AnswerCard(response: lastResponse)
                 } else {
-                    AnswerCard(response: responses.last ?? Response.sampleData[0])
+                    BlankCard()
                 }
             }
             
@@ -97,6 +103,21 @@ struct QuizView: View {
                                 if let lastResponse = responses.last, let randomContact = Contact.sampleData.randomElement() {
                                     if lastResponse.isCorrect {
                                         currentContact = randomContact
+                                        
+                                        greenFeedback = 1
+                                        
+                                        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+                                            print(greenFeedback)
+                                            greenFeedback -= 0.05
+
+                                            if greenFeedback <= 0 {
+                                                timer.invalidate()
+                                            }
+                                        }
+                                        
+                                        
+                                        
+                                        
                                     }
                                 }
                                 phoneNumber = ""
