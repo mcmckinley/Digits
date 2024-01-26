@@ -21,7 +21,6 @@
 		4C9F1AF42B5F438400407198 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9F1AF32B5F438400407198 /* HomeView.swift */; };
 		4CB0D2DD2B60D959004FB8E6 /* AnswerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0D2DC2B60D959004FB8E6 /* AnswerCard.swift */; };
 		4CB0D2E52B60E90C004FB8E6 /* PhoneNumberFrameCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0D2E42B60E90C004FB8E6 /* PhoneNumberFrameCard.swift */; };
-		4CDD3F5C2B6346F40094C03C /* BlankCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDD3F5B2B6346F40094C03C /* BlankCard.swift */; };
 		4CFD5B702B5A08B000792DD0 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD5B6F2B5A08B000792DD0 /* QuizView.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,7 +59,6 @@
 		4C9F1AF32B5F438400407198 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4CB0D2DC2B60D959004FB8E6 /* AnswerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCard.swift; sourceTree = "<group>"; };
 		4CB0D2E42B60E90C004FB8E6 /* PhoneNumberFrameCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberFrameCard.swift; sourceTree = "<group>"; };
-		4CDD3F5B2B6346F40094C03C /* BlankCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankCard.swift; sourceTree = "<group>"; };
 		4CFD5B6F2B5A08B000792DD0 /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -165,7 +163,6 @@
 				4CFD5B6F2B5A08B000792DD0 /* QuizView.swift */,
 				4CB0D2E42B60E90C004FB8E6 /* PhoneNumberFrameCard.swift */,
 				4CB0D2DC2B60D959004FB8E6 /* AnswerCard.swift */,
-				4CDD3F5B2B6346F40094C03C /* BlankCard.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -309,7 +306,6 @@
 				4C9F1AE82B5EF42200407198 /* SettingsView.swift in Sources */,
 				4C0209D72B5763070013E015 /* Contact.swift in Sources */,
 				4CB0D2DD2B60D959004FB8E6 /* AnswerCard.swift in Sources */,
-				4CDD3F5C2B6346F40094C03C /* BlankCard.swift in Sources */,
 				4C9F1AF42B5F438400407198 /* HomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

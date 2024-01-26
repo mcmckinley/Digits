@@ -106,11 +106,12 @@ struct QuizView: View {
             // The number you just entered
             HStack {
                 if let lastResponse = responses.last {
-                    AnswerCard(response: lastResponse)
-                } else {
-                    BlankCard()
+                    if !lastResponse.isCorrect {
+                        AnswerCard(response: lastResponse)
+                    }
                 }
             }
+                // ISSUE: Fix this formatting
             
             // Where you type the number
             HStack {
