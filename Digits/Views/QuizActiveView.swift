@@ -10,8 +10,9 @@ import Foundation
 
 struct QuizActiveView: View {
     let contacts: [Contact]
+    @Binding var responses: [Response]
     @Binding var quizIsFinished: Bool
-    
+
     // The currently entered number by the user
     @State var phoneNumber: String = ""
     
@@ -22,7 +23,6 @@ struct QuizActiveView: View {
     @FocusState private var isFocused: Bool
     
     // List of the user's responses
-    @State private var responses: [Response] = [] //Response.sampleData
     
     // Current contact in question
     @State private var currentContact: Contact = Contact.sampleData[0]
@@ -112,7 +112,6 @@ struct QuizActiveView: View {
                     }
                 }
             }
-                // ISSUE: Fix this formatting
             
             // Where you type the number
             HStack {
@@ -175,7 +174,10 @@ struct QuizActiveView: View {
     
 }
 
-#Preview {
-    QuizActiveView(contacts: Contact.sampleData, quizIsFinished: .constant(false))
+struct QuizActiveView_Previews: PreviewProvider {
+    
+    static var previews: some View {
+        QuizActiveView(contacts: Contact.sampleData, responses: .constant(Response.sampleData), quizIsFinished: .constant(false))
+    }
 }
 

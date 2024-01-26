@@ -8,12 +8,23 @@
 import SwiftUI
 
 struct QuizSummaryView: View {
+    let responses: [Response]
+    
     var body: some View {
-        Text("hi")
+        List {
+            Text("hi")
+        }
+        .navigationTitle("hi")
+        /*
+        List(responses) { response in
+            Text(response.userResponse)
+            
+        }
+         */
     }
 }
 
 #Preview {
-    QuizSummaryView()
+    QuizSummaryView(responses: Response.sampleData)
 }
 

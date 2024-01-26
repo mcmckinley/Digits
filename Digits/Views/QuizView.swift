@@ -3,13 +3,15 @@ import SwiftUI
 struct QuizView: View {
     let contacts: [Contact]
     
+    @State var responses: [Response] = []
+
     @State var quizIsFinished: Bool = false;
     
     var body: some View {
         if quizIsFinished {
-            QuizSummaryView()
+            QuizSummaryView(responses: responses)
         } else {
-            QuizActiveView(contacts: contacts, quizIsFinished: $quizIsFinished)
+            QuizActiveView(contacts: contacts, responses: $responses, quizIsFinished: $quizIsFinished)
         }
     }
 }
