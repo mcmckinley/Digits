@@ -19,7 +19,7 @@ struct Response: Identifiable {
         userResponse.map{String($0)}
     }
     
-    var answerIsCorrect: Bool {
+    var isCorrect: Bool {
         userResponse == answer
     }
     

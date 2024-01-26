@@ -77,10 +77,7 @@ struct QuizView: View {
                     }
                     
                     // The underlying frame
-                    
                     PhoneNumberFrameCard()
-                    
-                    
                     
                     // Where the program receives input
                     TextField("", text: $phoneNumber)
@@ -95,9 +92,16 @@ struct QuizView: View {
                             if currentNumber.count == 10 {
                                 print("Phone number entered: \(currentNumber)")
                                 responses.append(Response(answer: currentContact.number, userResponse: phoneNumber))
+                                
+                                // If a correct asnwer is given, assign a new random contact
+                                if let lastResponse = responses.last, let randomContact = Contact.sampleData.randomElement() {
+                                    if lastResponse.isCorrect {
+                                        currentContact = randomContact
+                                    }
+                                }
                                 phoneNumber = ""
-                                currentContact = Contact.sampleData.randomElement() ?? Contact.sampleData[0]
                             }
+                            
                         }
                         .onAppear {
                             isFocused = true
