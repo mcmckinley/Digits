@@ -33,8 +33,11 @@ struct QuizView: View {
     @State var greenFeedback: Double = 0
     @State var blueFeedback: Double = 0
     
+    // Handle the text color flashin based on
     private func feedback(correct: Bool){
-        if correct && colorScheme == .light {
+        let lightMode: Bool = (colorScheme == .light)
+        
+        if correct && lightMode {
             greenFeedback = 1
             Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
                 greenFeedback -= 0.1
@@ -42,7 +45,7 @@ struct QuizView: View {
                     timer.invalidate()
                 }
             }
-        } else if !correct && colorScheme == .light {
+        } else if !correct && lightMode {
             redFeedback = 1
             Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
                 redFeedback -= 0.05
@@ -50,7 +53,7 @@ struct QuizView: View {
                     timer.invalidate()
                 }
             }
-        } else if correct { // } && colorScheme == .dark {
+        } else if correct { // } && lightMode {
             redFeedback = 0
             blueFeedback = 0
             Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
