@@ -21,7 +21,7 @@ struct QuizView: View {
     @FocusState private var isFocused: Bool
     
     // List of the user's responses
-    @State private var responses: [Response] = [] // Response.sampleData
+    @State private var responses: [Response] = Response.sampleData
     
     @State private var currentContact: Contact = Contact.sampleData[0]
     
@@ -32,62 +32,79 @@ struct QuizView: View {
         // b) - The TextField that accepts the user's input
         // c) - The phone number frame: (___)___-____
         
-        List(responses) {response in
-            AnswerCard(response: response)
-        }
-        .listStyle(PlainListStyle())
-        //.environment(\.defaultMinListRowHeight, 70)
-        
-        HStack {
-            Spacer().frame(width: 14)
-            ZStack {
-                // Dynamic display of the user-entered phone number
-                HStack (spacing: 0){
-                    Spacer().frame(width: 32)
-                    ForEach(Array(userEntryArray.enumerated()), id: \.0) { index, char in
-                        Text(char)
-                            .font(.system(size: 30))
-                            .padding([.trailing], 7)
-                            .fontDesign(.monospaced)
-                        if index == 2 {
-                            Spacer().frame(width: 23)
-                        }
-                        if index == 5 {
-                            Spacer().frame(width: 18)
-                        }
-                    }
-                    Spacer()
-                }
-                
-                // The underlying frame
-                
-                PhoneNumberFrameCard()
-                
-                
-                
-                // Where the program receives input
-                TextField("", text: $phoneNumber)
-                    .keyboardType(.numberPad)
-                    .opacity(0)
-                    .font(.system(size: 24))
-                    .focused($isFocused)
-                    .padding([.leading], 3)
-                    .onChange(of: phoneNumber, initial: false) { previousNumber, currentNumber in
-                        userEntryArray = phoneNumber.map{String($0)}
-                        
-                        if currentNumber.count == 10 {
-                            print("Phone number entered: \(currentNumber)")
-                            responses.append(Response(answer: currentContact.number, userResponse: phoneNumber))
-                            phoneNumber = ""
-                        }
-                    }
-                    .onAppear {
-                        isFocused = true
-                }
-                
-                
+        VStack {
+            
+            HStack {
+                Spacer().frame(width: 10)
+                Text("Enter")
+                    .font(.title)
+                    .bold()
+                Text("\(currentContact.name)'s")
+                    .font(.title)
+                    .bold()
+                Text("digits:")
+                    .font(.title)
+                    .bold()
+                Spacer()
             }
-            .position(CGPoint(x: 200.0, y: 30.0))
+            
+            HStack {
+                if responses.count == 0 {
+                    BlankCard()
+                } else {
+                    AnswerCard(response: responses.last ?? Response.sampleData[0])
+                }
+            }
+            
+            HStack {
+                ZStack {
+                    // Dynamic display of the user-entered phone number
+                    HStack (spacing: 0){
+                        Spacer().frame(width: 32)
+                        ForEach(Array(userEntryArray.enumerated()), id: \.0) { index, char in
+                            Text(char)
+                                .font(.system(size: 30))
+                                .padding([.trailing], 7)
+                                .fontDesign(.monospaced)
+                            if index == 2 {
+                                Spacer().frame(width: 23)
+                            }
+                            if index == 5 {
+                                Spacer().frame(width: 18)
+                            }
+                        }
+                        Spacer()
+                    }
+                    
+                    // The underlying frame
+                    
+                    PhoneNumberFrameCard()
+                    
+                    
+                    
+                    // Where the program receives input
+                    TextField("", text: $phoneNumber)
+                        .keyboardType(.numberPad)
+                        .opacity(0)
+                        .font(.system(size: 24))
+                        .focused($isFocused)
+                        .padding([.leading], 3)
+                        .onChange(of: phoneNumber, initial: false) { previousNumber, currentNumber in
+                            userEntryArray = phoneNumber.map{String($0)}
+                            
+                            if currentNumber.count == 10 {
+                                print("Phone number entered: \(currentNumber)")
+                                responses.append(Response(answer: currentContact.number, userResponse: phoneNumber))
+                                phoneNumber = ""
+                                currentContact = Contact.sampleData.randomElement() ?? Contact.sampleData[0]
+                            }
+                        }
+                        .onAppear {
+                            isFocused = true
+                        }
+                }
+            }
+            
         }
         
     }
