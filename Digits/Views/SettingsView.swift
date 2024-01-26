@@ -15,13 +15,13 @@ struct EditQuizSheet: View {
     
     var body: some View {
         Form {
-            Section(header: Text("Meeting Info")) {
+            Section(header: Text("Time per question")) {
                 HStack {
                     Slider(value: $time, in: 5...60, step: 1) {
                         Text("Length")
                     }
                     Spacer()
-                    Text("\(time) seconds")
+                    Text("\(Int(time)) seconds")
                 }
             }
             Section(header: Text("Enabled contacts")) {

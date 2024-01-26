@@ -41,12 +41,13 @@ struct QuizView: View {
                 Text("\(currentContact.name)'s")
                     .font(.title)
                     .bold()
-                    .foregroundColor(Color(red: redFeedback, green: greenFeedback, blue:0))
                 Text("digits:")
                     .font(.title)
                     .bold()
                 Spacer()
             }
+            .foregroundColor(Color(red: redFeedback, green: greenFeedback, blue:0))
+
             
             // The number you just entered
             HStack {
