@@ -112,6 +112,6 @@ struct PhoneNumberFrameCard: View {
 struct PhoneNumberFrameCard_Previews: PreviewProvider {
     static var previews: some View {
         PhoneNumberFrameCard()
-            .previewLayout(.fixed(width: 400, height: 60))
+            //.previewLayout(.fixed(width: 400, height: 60))
     }
 }
