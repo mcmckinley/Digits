@@ -23,20 +23,16 @@ struct QuizView: View {
     // List of the user's responses
     @State private var responses: [Response] = [] //Response.sampleData
     
+    // Current contact in question
     @State private var currentContact: Contact = Contact.sampleData[0]
     
+    // Red and green flashing after responses
     @State var redFeedback: Double = 0
     @State var greenFeedback: Double = 0
-    
 
     var body: some View {
-        // Using a ZStack to display each element on top of each other
-        // a) - The characters as they are typed
-        // b) - The TextField that accepts the user's input
-        // c) - The phone number frame: (___)___-____
-        
         VStack {
-            
+            // Enter <person>'s digits
             HStack {
                 Spacer().frame(width: 10)
                 Text("Enter")
@@ -52,8 +48,7 @@ struct QuizView: View {
                 Spacer()
             }
             
-
-            
+            // The number you just entered
             HStack {
                 if let lastResponse = responses.last {
                     AnswerCard(response: lastResponse)
@@ -62,6 +57,7 @@ struct QuizView: View {
                 }
             }
             
+            // Where you type the number
             HStack {
                 ZStack {
                     // Dynamic display of the user-entered phone number
@@ -85,13 +81,16 @@ struct QuizView: View {
                     // The underlying frame
                     PhoneNumberFrameCard()
                     
-                    // Where the program receives input
+                    // Where the program receives input - this is invisible
                     TextField("", text: $phoneNumber)
                         .keyboardType(.numberPad)
                         .opacity(0)
                         .font(.system(size: 24))
                         .focused($isFocused)
                         .padding([.leading], 3)
+                        .onAppear {
+                            isFocused = true
+                        }
                         .onChange(of: phoneNumber, initial: false) { previousNumber, currentNumber in
                             userEntryArray = phoneNumber.map{String($0)}
                             
@@ -101,6 +100,8 @@ struct QuizView: View {
                                 
                                 // If a correct asnwer is given, assign a new random contact
                                 if let lastResponse = responses.last, let randomContact = Contact.sampleData.randomElement() {
+                                    phoneNumber = ""
+
                                     if lastResponse.isCorrect {
                                         currentContact = randomContact
                                         
@@ -114,24 +115,24 @@ struct QuizView: View {
                                                 timer.invalidate()
                                             }
                                         }
+                                    } else {
+                                        redFeedback = 1
                                         
-                                        
-                                        
-                                        
+                                        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+                                            print(redFeedback)
+                                            redFeedback -= 0.05
+
+                                            if redFeedback <= 0 {
+                                                timer.invalidate()
+                                            }
+                                        }
                                     }
                                 }
-                                phoneNumber = ""
                             }
-                            
-                        }
-                        .onAppear {
-                            isFocused = true
                         }
                 }
             }
-            
         }
-        
     }
 }
 
