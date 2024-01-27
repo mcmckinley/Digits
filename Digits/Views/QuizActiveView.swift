@@ -151,7 +151,7 @@ struct QuizActiveView: View {
                             userEntryArray = phoneNumber.map{String($0)}
                             
                             if currentNumber.count == 10 {
-                                responses.append(Response(answer: currentContact.number, userResponse: phoneNumber))
+                                responses.append(Response(answer: currentContact.number, userResponse: phoneNumber, contactName: currentContact.name))
                                 
                                 // If a correct asnwer is given, assign a new random contact
                                 if let lastResponse = responses.last, let randomContact = Contact.sampleData.randomElement() {

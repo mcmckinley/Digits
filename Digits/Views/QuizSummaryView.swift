@@ -44,9 +44,12 @@ struct QuizSummaryView: View {
             return Color(red: 0.7, green: 0.7, blue: 0.7)
         }
         return Color(red: 0.3, green: 0.3, blue: 0.3)
-
     }
     
+    var lightGreen = Color(red: 0.0, green: 0.4, blue: 0.0)
+    var lightRed = Color(red: 0.4, green: 0.0, blue: 0.0)
+
+        
     var body: some View {
         VStack(alignment: .leading) {
             Text(message)
