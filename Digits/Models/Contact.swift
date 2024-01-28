@@ -26,6 +26,10 @@ struct Contact: Identifiable {
     var allowed: Bool
     
     func formatNumber()-> String{
+        if number.count != 10 {
+            return "Please enter 10 digits."
+        }
+        
         let areaCode = number.prefix(3)
         let prefix = number[number.index(number.startIndex, offsetBy: 3)..<number.index(number.startIndex, offsetBy: 6)]
         let suffix = number.suffix(4)
@@ -55,6 +59,9 @@ struct Contact: Identifiable {
         Contact(name: "Eights", number: "8888888888"),
         Contact(name: "Nines",  number: "9999999999"),
     ]
+    static var emptyContact: Contact {
+        Contact(name: "", number: "")
+    }
     
 }
 

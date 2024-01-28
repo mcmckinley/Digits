@@ -5,7 +5,7 @@ struct HomeView: View {
     @Binding var contacts: [Contact]
     
     @State private var isPresentingSettingsView = false
-    @State private var timePerQuestion: Double = 8.0
+    
     @State var isInQuizView = false
 
     var body: some View {
@@ -14,13 +14,24 @@ struct HomeView: View {
             if (contacts.filter{$0.enabled}).count > 0 {
                 List($contacts) { $contact in
                     if contact.enabled {
-                        ContactCard(contact: $contact)
+                        HStack {
+                            Button(action: {
+                                print("hello from \(contact.name)")
+                            }) {
+                                Image(systemName: "plus.circle.fill")
+                            }
+                            NavigationLink(destination: ContactDetailSheet(contact: $contact)){
+                                ContactCard(contact: $contact)
+                            }
+                            
+                        }
+                        
                     }
                 }
                 .navigationTitle("Digits Quiz")
             } else {
                 List {
-                    Text("Select some contacts!")
+                    Text("No contacts currently selected. ")
                 }
                 .navigationTitle("Digits Quiz")
             }
@@ -54,7 +65,7 @@ struct HomeView: View {
             }
         }
         .sheet(isPresented: $isPresentingSettingsView) {
-            EditQuizSheet(contacts: $contacts, time: $timePerQuestion)
+            EditQuizSheet(contacts: $contacts)
         }
     }
 }

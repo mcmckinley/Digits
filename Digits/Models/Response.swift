@@ -45,6 +45,7 @@ struct Response: Identifiable {
         Response(answer: "4444444444", userResponse: "4444444444", contactName: "Fours")
     ]
     
+    
     func formatNumber(number: String) -> String {
         let areaCode = number.prefix(3)
         let prefix = number[number.index(number.startIndex, offsetBy: 3)..<number.index(number.startIndex, offsetBy: 6)]
