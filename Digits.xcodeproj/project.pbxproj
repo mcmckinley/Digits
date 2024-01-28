@@ -15,6 +15,7 @@
 		4C0209C92B57624D0013E015 /* DigitsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0209C82B57624D0013E015 /* DigitsUITestsLaunchTests.swift */; };
 		4C0209D72B5763070013E015 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0209D62B5763070013E015 /* Contact.swift */; };
 		4C0209DA2B57663E0013E015 /* ContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0209D92B57663E0013E015 /* ContactCard.swift */; };
+		4C3AF3FF2B66D7DA00EFE516 /* NewContactSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AF3FE2B66D7DA00EFE516 /* NewContactSheet.swift */; };
 		4C4C26412B66183900D08F90 /* EditContactSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4C26402B66183900D08F90 /* EditContactSheet.swift */; };
 		4C4C26432B66249800D08F90 /* ContactDetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4C26422B66249800D08F90 /* ContactDetailSheet.swift */; };
 		4C63C6F12B642F630022A147 /* QuizSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C63C6F02B642F630022A147 /* QuizSummaryView.swift */; };
@@ -57,6 +58,7 @@
 		4C0209C82B57624D0013E015 /* DigitsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		4C0209D62B5763070013E015 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		4C0209D92B57663E0013E015 /* ContactCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCard.swift; sourceTree = "<group>"; };
+		4C3AF3FE2B66D7DA00EFE516 /* NewContactSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContactSheet.swift; sourceTree = "<group>"; };
 		4C4C26402B66183900D08F90 /* EditContactSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContactSheet.swift; sourceTree = "<group>"; };
 		4C4C26422B66249800D08F90 /* ContactDetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailSheet.swift; sourceTree = "<group>"; };
 		4C63C6F02B642F630022A147 /* QuizSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSummaryView.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				4CB0D2DC2B60D959004FB8E6 /* AnswerCard.swift */,
 				4C4C26422B66249800D08F90 /* ContactDetailSheet.swift */,
 				4C4C26402B66183900D08F90 /* EditContactSheet.swift */,
+				4C3AF3FE2B66D7DA00EFE516 /* NewContactSheet.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 			files = (
 				4CFD5B702B5A08B000792DD0 /* QuizView.swift in Sources */,
 				4C9F1AEA2B5F062D00407198 /* AllContactsView.swift in Sources */,
+				4C3AF3FF2B66D7DA00EFE516 /* NewContactSheet.swift in Sources */,
 				4CB0D2E52B60E90C004FB8E6 /* PhoneNumberFrameCard.swift in Sources */,
 				4C0209AC2B57624B0013E015 /* DigitsApp.swift in Sources */,
 				4C8A8D562B61D3B200F32171 /* Response.swift in Sources */,

@@ -13,6 +13,7 @@ struct EditContactsView: View {
 
     @State var isDisplayingAllContactsSheet: Bool = false
     
+    @State private var isDisplayingEditContactSheet: Bool = false
     
     var body: some View {
         
@@ -20,6 +21,13 @@ struct EditContactsView: View {
             List($contacts.filter{$0.allowed.wrappedValue}) { $contact in
                 NavigationLink(destination: EditContactSheet(contact: $contact)) {
                     Text(contact.name)
+                }
+            }
+            .toolbar {
+                Button(action: {
+                    isDisplayingEditContactSheet = true
+                }) {
+                    Image(systemName: "plus")
                 }
             }
             .navigationTitle("Edit contacts")
@@ -37,7 +45,9 @@ struct EditContactsView: View {
                 
             }
         }
-        
+        .sheet(isPresented: $isDisplayingEditContactSheet){
+            NewContactSheet(contacts: $contacts, isPresentingNewContactSheet: $isDisplayingEditContactSheet)
+        }
         .sheet(isPresented: $isDisplayingAllContactsSheet) {
             AllContactsView(contacts: $contacts)
         }
