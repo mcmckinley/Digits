@@ -16,7 +16,7 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             
-            if contacts.count > 0 {
+            if (contacts.filter{$0.allowed}).count > 0 {
                 // Sort contacts by enabled first and disabled last, then filter out those that are ignored
                 List($contacts.sorted(by: {$0.enabled.wrappedValue && !$1.enabled.wrappedValue}).filter{$0.allowed.wrappedValue}) { $contact in
                     ContactCard(contact: $contact)
@@ -25,7 +25,11 @@ struct HomeView: View {
                 .navigationTitle("Digits Quiz")
             } else {
                 List {
-                    Text("No contacts currently selected. ")
+                    Text("No contacts selected.")
+                    
+                    Text("Adding straight from your contacts: on your phone, go to Settings > Digits Quiz and allow the app to view your contacts. Then click the settings icon down below, and click \"See hidden contacts\"")
+                    
+                    Text("Creating your own: click \"Settings\" and press the + icon in the top right")
                 }
                 .navigationTitle("Digits Quiz")
             }
