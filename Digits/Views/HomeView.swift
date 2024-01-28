@@ -33,7 +33,7 @@ struct HomeView: View {
             HStack {
                 Spacer()
                 
-                NavigationLink(destination: EditQuizSheet(contacts: $contacts)){
+                NavigationLink(destination: EditContactsView(contacts: $contacts)){
                     Text("Settings")
                         .bold()
                         .foregroundColor(.white)

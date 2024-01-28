@@ -8,7 +8,7 @@
 import SwiftUI
 
 
-struct EditQuizSheet: View {
+struct EditContactsView: View {
     @Binding var contacts: [Contact]
 
     @State var isDisplayingAllContactsSheet: Bool = false
@@ -44,8 +44,8 @@ struct EditQuizSheet: View {
     }
 }
 
-struct EditQuizSheet_Previews: PreviewProvider {
+struct EditQuizView_Previews: PreviewProvider {
     static var previews: some View {
-        EditQuizSheet(contacts: .constant(Contact.sampleData))
+        EditContactsView(contacts: .constant(Contact.sampleData))
     }
 }
