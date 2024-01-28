@@ -3,9 +3,7 @@ import SwiftUI
 struct HomeView: View {
     
     @Binding var contacts: [Contact]
-    
-    @State private var isPresentingSettingsView = false
-    
+        
     @State var isInQuizView = false
     
     @Environment(\.colorScheme) var colorScheme
@@ -34,9 +32,8 @@ struct HomeView: View {
             
             HStack {
                 Spacer()
-                Button(action: {
-                    isPresentingSettingsView = true
-                }) {
+                
+                NavigationLink(destination: EditQuizSheet(contacts: $contacts)){
                     Text("Settings")
                         .bold()
                         .foregroundColor(.white)
@@ -44,7 +41,6 @@ struct HomeView: View {
                         .padding([.leading, .trailing], 40)
                         .background(Color.gray)
                         .cornerRadius(10)
-                    
                 }
                 if (contacts.filter{$0.enabled}).count > 0{
                     NavigationLink(destination: QuizView(contacts: contacts.filter{$0.enabled}) ) {
@@ -59,9 +55,6 @@ struct HomeView: View {
                 }
                 Spacer()
             }
-        }
-        .sheet(isPresented: $isPresentingSettingsView) {
-            EditQuizSheet(contacts: $contacts)
         }
     }
 }

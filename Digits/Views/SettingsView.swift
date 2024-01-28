@@ -11,7 +11,6 @@ import SwiftUI
 struct EditQuizSheet: View {
     @Binding var contacts: [Contact]
 
-    
     @State var isDisplayingAllContactsSheet: Bool = false
     
     
