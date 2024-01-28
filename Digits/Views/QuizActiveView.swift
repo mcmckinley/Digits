@@ -140,46 +140,44 @@ struct QuizActiveView: View {
             }
             
             // Where you type the number
-            HStack {
-                ZStack {
-                    // Dynamic display of the user-entered phone number
-                    HStack (spacing: 0){
-                        Spacer().frame(width: 32)
-                        ForEach(Array(userEntryArray.enumerated()), id: \.0) { index, char in
-                            Text(char)
-                                .font(.system(size: 30))
-                                .padding([.trailing], 7)
-                                .fontDesign(.monospaced)
-                            if index == 2 {
-                                Spacer().frame(width: 23)
-                            }
-                            if index == 5 {
-                                Spacer().frame(width: 18)
-                            }
+            ZStack {
+                // Dynamic display of the user-entered phone number
+                HStack (spacing: 0){
+                    Spacer().frame(width: 32)
+                    ForEach(Array(userEntryArray.enumerated()), id: \.0) { index, char in
+                        Text(char)
+                            .font(.system(size: 30))
+                            .padding([.trailing], 7)
+                            .fontDesign(.monospaced)
+                        if index == 2 {
+                            Spacer().frame(width: 23)
                         }
-                        Spacer()
-                    }
-                    
-                    // The underlying frame
-                    PhoneNumberFrameCard()
-                    
-                    // Where the program receives input - this is invisible
-                    TextField("", text: $userEntry)
-                    .keyboardType(.numberPad)
-                    .opacity(0)
-                    .font(.system(size: 24))
-                    .focused($isFocused)
-                    .padding([.leading], 3)
-                    .onAppear {
-                        isFocused = true
-                    }
-                    .onChange(of: userEntry, initial: false) { _, currentNumber in
-                        
-                        userEntryArray = userEntry.map{String($0)}
-                        
-                        if currentNumber.count == 10 {
-                            handleResponse()
+                        if index == 5 {
+                            Spacer().frame(width: 18)
                         }
+                    }
+                    Spacer()
+                }
+                    
+                // The underlying frame
+                PhoneNumberFrameCard()
+                
+                // Where the program receives input - this is invisible
+                TextField("", text: $userEntry)
+                .keyboardType(.numberPad)
+                .opacity(0)
+                .font(.system(size: 24))
+                .focused($isFocused)
+                .padding([.leading], 3)
+                .onAppear {
+                    isFocused = true
+                }
+                .onChange(of: userEntry, initial: false) { _, currentNumber in
+                    
+                    userEntryArray = userEntry.map{String($0)}
+                    
+                    if currentNumber.count == 10 {
+                        handleResponse()
                     }
                 }
             }

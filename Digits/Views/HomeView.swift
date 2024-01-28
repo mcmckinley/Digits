@@ -15,7 +15,6 @@ struct HomeView: View {
 
     var body: some View {
         NavigationStack {
-            
             if (contacts.filter{$0.allowed}).count > 0 {
                 // Sort contacts by enabled first and disabled last, then filter out those that are ignored
                 List($contacts.sorted(by: {$0.enabled.wrappedValue && !$1.enabled.wrappedValue}).filter{$0.allowed.wrappedValue}) { $contact in
