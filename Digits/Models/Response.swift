@@ -2,8 +2,10 @@
 //  Response.swift
 //  Digits
 //
-//  Created by Michael McKinley on 1/24/24.
+//  Created by Michael McKinley
 //
+//  Description:
+//      - Stores a response from the user
 
 import Foundation
 

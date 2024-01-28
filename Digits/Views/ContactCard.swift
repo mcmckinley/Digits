@@ -2,19 +2,21 @@
 //  ContactCard.swift
 //  Digits
 //
-//  Created by Michael McKinley on 1/16/24.
+//  Created by Michael McKinley
 //
+//  Description:
+//      A simple display of a contact's name and digits, as well as a button to toggle whether the contact will show up in the quiz
 
 import SwiftUI
 
 struct ContactCard: View {
     @Binding var contact: Contact
     
-    @Environment(\.colorScheme) var colorScheme
-    var darkGrey = Color(red: 0.5, green: 0.5, blue: 0.5)
-    
+    // Used for disabled contacts
+    static let darkGrey = Color(red: 0.5, green: 0.5, blue: 0.5)
     
     var body: some View {
+        // Formatting for enabled contacts
         if contact.enabled {
             HStack {
                 Text(contact.name)
@@ -32,6 +34,7 @@ struct ContactCard: View {
             }
             .padding(5)
         } else {
+            // Formatting for greyed out (disabled) contacts
             HStack {
                 HStack {
                     Text(contact.name)
@@ -41,7 +44,7 @@ struct ContactCard: View {
                     Text(contact.numberFull)
                         .bold()
                 }
-                .foregroundColor(darkGrey)
+                .foregroundColor(ContactCard.darkGrey)
                 Button(action: {
                     contact.enabled.toggle()
                 }) {

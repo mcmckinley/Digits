@@ -2,7 +2,11 @@
 //  NewContactSheet.swift
 //  Digits
 //
-//  Created by Michael McKinley on 1/28/24.
+//  Created by Michael McKinley
+//
+//  Description:
+//      - Sheet for creating a new contact
+//
 //
 
 import SwiftUI
@@ -17,11 +21,13 @@ struct NewContactSheet: View {
         NavigationStack {
             EditContactSheet(contact: $newContact)
                 .toolbar {
+                    // Cancel
                     ToolbarItem(placement: .cancellationAction) {
                         Button("Cancel") {
                             isPresentingNewContactSheet = false
                         }
                     }
+                    // Save
                     ToolbarItem(placement: .confirmationAction) {
                         Button("Save") {
                             contacts.append(newContact)

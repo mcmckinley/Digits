@@ -2,8 +2,10 @@
 //  Contacts.swift
 //  Digits
 //
-//  Created by Michael McKinley on 1/16/24.
+//  Created by Michael McKinley
 //
+//  Description:
+//      - Stores a contact's information
 
 import Foundation
 

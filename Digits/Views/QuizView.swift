@@ -1,3 +1,12 @@
+//
+//  QuizView.swift
+//  Digits
+//
+//  Created by Michael McKinley
+//
+//  Description:
+//      - Manages QuizActiveView and QuizSummaryView. Directs user to either of these views.
+
 import SwiftUI
 
 struct QuizView: View {

@@ -2,8 +2,10 @@
 //  QuizActiveView.swift
 //  Digits
 //
-//  Created by Michael McKinley on 1/16/24.
+//  Created by Michael McKinley
 //
+//  Description:
+//      - This is where the user takes the quiz. A prompt is given, asking the user to enter a contact's digits. The prompt flashes green and moves on to the next question if a correct answer is given. If an incorrect answer is given, the prompt flashes red and allows the user to answer again.
 
 import SwiftUI
 import Foundation
@@ -18,19 +20,26 @@ struct QuizActiveView: View {
     @Binding var quizIsFinished: Bool
 
     // The currently entered number by the user
-    @State var userEntry: String = ""
-    // Same as userEntry, but split into characters
+    @State private var userEntry: String = ""
+    // Same as userEntry, but split into characters for parsing
     @State private var userEntryArray: [String] = []
     
-    // Whether the user is focused on the textbox - necessary, I think
+    // Automatically selects the textfield.
     @FocusState private var isFocused: Bool
     
+    // Dark mode / light mode
     @Environment(\.colorScheme) var colorScheme
 
     // Red and green flashing after responses
     @State var redFeedback: Double = 0
     @State var greenFeedback: Double = 0
     @State var blueFeedback: Double = 0
+    
+    private func updateColors(){
+        redFeedback   = colorScheme == .light ? 0 : 1
+        blueFeedback  = colorScheme == .light ? 0 : 1
+        greenFeedback = colorScheme == .light ? 0 : 1
+    }
     
     // Handle the text color flashing based on if asnwer is correct
     private func feedback(correct: Bool){
@@ -74,11 +83,6 @@ struct QuizActiveView: View {
             }
         }
     }
-    private func updateColors(){
-        redFeedback   = colorScheme == .light ? 0 : 1
-        blueFeedback  = colorScheme == .light ? 0 : 1
-        greenFeedback = colorScheme == .light ? 0 : 1
-    }
     
     // Handle a response, either when submitted or skipped
     private func handleResponse(skipped: Bool = false){
@@ -98,7 +102,6 @@ struct QuizActiveView: View {
         if let lastResponse = responses.last {
             if lastResponse.isCorrect {
                 feedback(correct: true)
-                //timeRemaining = timePerQuestion
 
                 if contactIndex == contacts.count-1 {
                     quizIsFinished = true
@@ -115,23 +118,25 @@ struct QuizActiveView: View {
 
     var body: some View {
         VStack {
+            // Adjust everything down a bit
             Spacer().frame(height: 120)
 
             // Enter <person>'s digits
-                HStack {
+            HStack {
                 Spacer().frame(width: 10)
                 Text("Enter \(contacts[contactIndex].name)'s digits:")
                     .font(.title)
                     .bold()
                 Spacer()
             }
+            // Responsive feedback
             .foregroundColor(Color(red: redFeedback, green: greenFeedback, blue: blueFeedback))
-            .onChange(of: colorScheme, initial: true) { _, _ in
+            .onChange(of: colorScheme, initial: true) {
                 updateColors()
             }
 
             
-            // The number you just entered
+            // The number you just entered: invisible if your previous answer was correct
             HStack {
                 if let lastResponse = responses.last {
                     if !lastResponse.isCorrect {
@@ -142,6 +147,7 @@ struct QuizActiveView: View {
             
             // Where you type the number
             ZStack {
+                
                 // Dynamic display of the user-entered phone number
                 HStack (spacing: 0){
                     Spacer().frame(width: 32)

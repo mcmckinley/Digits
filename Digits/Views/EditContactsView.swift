@@ -1,9 +1,11 @@
 //
-//  EditQuizSheet.swift
+//  EditContactsView.swift
 //  Digits
 //
-//  Created by Michael McKinley on 1/22/24.
+//  Created by Michael McKinley
 //
+//  Description:
+//      - Shows all visible contacts. Can click on a contact to edit, swipe left to delete, or press "+" to create a new one
 
 import SwiftUI
 
@@ -11,8 +13,7 @@ import SwiftUI
 struct EditContactsView: View {
     @Binding var contacts: [Contact]
 
-    @State var isDisplayingAllContactsSheet: Bool = false
-    
+    @State private var isPresentingAllContactsSheet: Bool = false
     @State private var isPresentingNewContactSheet: Bool = false
     
     func removeContact(at offsets: IndexSet) {
@@ -42,7 +43,7 @@ struct EditContactsView: View {
             .navigationTitle("Edit contacts")
         
             Button(action: {
-                isDisplayingAllContactsSheet = true
+                isPresentingAllContactsSheet = true
             }) {
                 Text("See hidden contacts")
                     .bold()
@@ -51,13 +52,12 @@ struct EditContactsView: View {
                     .padding([.leading, .trailing], 40)
                     .background(Color.gray)
                     .cornerRadius(10)
-                
             }
         }
         .sheet(isPresented: $isPresentingNewContactSheet){
             NewContactSheet(contacts: $contacts, isPresentingNewContactSheet: $isPresentingNewContactSheet)
         }
-        .sheet(isPresented: $isDisplayingAllContactsSheet) {
+        .sheet(isPresented: $isPresentingAllContactsSheet) {
             AllContactsView(contacts: $contacts)
         }
     }

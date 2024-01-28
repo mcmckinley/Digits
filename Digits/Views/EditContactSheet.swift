@@ -1,3 +1,11 @@
+//
+//  EditContactSheet.swift
+//  Digits
+//
+//  Created by Michael McKinley
+//
+//  Description:
+//      - Sheet for editing a single contact
 
 import SwiftUI
 

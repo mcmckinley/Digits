@@ -2,8 +2,10 @@
 //  PhoneNumberFrameCard.swift
 //  Digits
 //
-//  Created by Michael McKinley on 1/23/24.
+//  Created by Michael McKinley
 //
+//  Description:
+//      - Provides the following frame for a US phone number: (___)___-____
 
 import SwiftUI
 
@@ -27,16 +29,13 @@ struct PhoneNumberFrameCard: View {
                     .font(.system(size: 32, design: .rounded))
                     .fontDesign(.monospaced)
                     .padding(3)
-
             }
             VStack {
                 Spacer().frame(height: 16)
                 Text("_")
                     .font(.system(size: 32, design: .rounded))
                     .fontDesign(.monospaced)
-
                     .padding(3)
-
             }
             Text(")")
                 .font(.system(size: 36, design: .rounded))
@@ -55,28 +54,23 @@ struct PhoneNumberFrameCard: View {
                 Text("_")
                     .font(.system(size: 32, design: .rounded))
                     .fontDesign(.monospaced)
-
                     .padding(3)
-
             }
             VStack {
                 Spacer().frame(height: 16)
                 Text("_")
                     .font(.system(size: 32, design: .rounded))
                     .fontDesign(.monospaced)
-
                     .padding(3)
             }
             Text("-")
                 .font(.system(size: 28, design: .rounded))
                 .fontDesign(.monospaced)
-
             VStack {
                 Spacer().frame(height: 16)
                 Text("_")
                     .font(.system(size: 32, design: .rounded))
                     .fontDesign(.monospaced)
-
                     .padding(3)
             }
             VStack {
@@ -84,16 +78,13 @@ struct PhoneNumberFrameCard: View {
                 Text("_")
                     .font(.system(size: 32, design: .rounded))
                     .fontDesign(.monospaced)
-
                     .padding(3)
-
             }
             VStack {
                 Spacer().frame(height: 16)
                 Text("_")
                     .font(.system(size: 32, design: .rounded))
                     .fontDesign(.monospaced)
-
                     .padding(3)
             }
             VStack {
@@ -112,6 +103,5 @@ struct PhoneNumberFrameCard: View {
 struct PhoneNumberFrameCard_Previews: PreviewProvider {
     static var previews: some View {
         PhoneNumberFrameCard()
-            //.previewLayout(.fixed(width: 400, height: 60))
     }
 }

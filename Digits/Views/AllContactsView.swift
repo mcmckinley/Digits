@@ -2,8 +2,10 @@
 //  AllContactsView.swift
 //  Digits
 //
-//  Created by Michael McKinley on 1/22/24.
+//  Created by Michael McKinley
 //
+//  Description:
+//      The user may have hundreds of contacts and only want to be quizzed on a few of them. Most contacts will be hidden. This screen shows which contacts are shown and which are hidden.
 
 import SwiftUI
 

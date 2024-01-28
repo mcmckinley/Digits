@@ -2,8 +2,10 @@
 //  QuizSummaryView.swift
 //  Digits
 //
-//  Created by Michael McKinley on 1/26/24.
+//  Created by Michael McKinley
 //
+//  Description:
+//      - Shows the results of the quiz. Provides buttons to return back to HomeView or to retake the quiz
 
 import SwiftUI
 
@@ -27,7 +29,6 @@ struct QuizSummaryView: View {
     var message: String {
         if      accuracy == 100 { return "Flawless!" }
         else if accuracy > 75 { return "Great job!" }
-        else if accuracy > 50 { return "Nice try!" }
         else                  { return "Try again?"}
     }
     
@@ -48,10 +49,6 @@ struct QuizSummaryView: View {
         return Color(red: 0.3, green: 0.3, blue: 0.3)
     }
     
-    var lightGreen = Color(red: 0.0, green: 0.4, blue: 0.0)
-    var lightRed = Color(red: 0.4, green: 0.0, blue: 0.0)
-
-        
     var body: some View {
         VStack(alignment: .leading) {
             Text(message)

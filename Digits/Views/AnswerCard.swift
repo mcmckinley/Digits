@@ -1,9 +1,11 @@
 //
-//  answerCard.swift
+//  AnswerCard.swift
 //  Digits
 //
-//  Created by Michael McKinley on 1/23/24.
+//  Created by Michael McKinley
 //
+//  Description
+//      - Shows the user which digits they answered correctly and incorrectly.
 
 import SwiftUI
 import Foundation
@@ -18,10 +20,11 @@ struct AnswerCard: View {
                 // Not sure how this next line works, needed openAI to help me here
                 ForEach(Array(response.userResponse.enumerated()), id: \.0) { index, char in
                     Text(response.userResponseArray[index])
+                        .foregroundColor(response.rightAnswerAt[index] ? .green : .red)
                         .font(.system(size: 30))
                         .padding([.trailing], 7)
                         .fontDesign(.monospaced)
-                        .foregroundColor(response.rightAnswerAt[index] ? .green : .red)
+                        
                     if index == 2 {
                         Spacer().frame(width: 23)
                     }

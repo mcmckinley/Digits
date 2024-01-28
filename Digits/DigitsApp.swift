@@ -2,8 +2,10 @@
 //  DigitsApp.swift
 //  Digits
 //
-//  Created by Michael McKinley on 1/16/24.
+//  Created by Michael McKinley
 //
+//  Description:
+//      - Quizzes a user on their knowledge of their contact's phone numbers.
 
 import SwiftUI
 

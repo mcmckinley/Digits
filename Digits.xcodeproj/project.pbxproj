@@ -165,7 +165,6 @@
 			isa = PBXGroup;
 			children = (
 				4C9F1AF32B5F438400407198 /* HomeView.swift */,
-				4C0209D92B57663E0013E015 /* ContactCard.swift */,
 				4C9F1AE72B5EF42200407198 /* EditContactsView.swift */,
 				4C4C26402B66183900D08F90 /* EditContactSheet.swift */,
 				4C3AF3FE2B66D7DA00EFE516 /* NewContactSheet.swift */,
@@ -174,6 +173,7 @@
 				4C63C6F22B642F8A0022A147 /* QuizActiveView.swift */,
 				4C63C6F02B642F630022A147 /* QuizSummaryView.swift */,
 				4CB0D2E42B60E90C004FB8E6 /* PhoneNumberFrameCard.swift */,
+				4C0209D92B57663E0013E015 /* ContactCard.swift */,
 				4CB0D2DC2B60D959004FB8E6 /* AnswerCard.swift */,
 			);
 			path = Views;
