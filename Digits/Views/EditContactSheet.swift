@@ -18,10 +18,8 @@ struct EditContactSheet: View {
                     Spacer()
                     Text(contact.numberFull)
                 }
-            }
-            
+            }   
         }
-        
     }
 }
 

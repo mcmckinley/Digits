@@ -18,12 +18,12 @@ struct NewContactSheet: View {
             EditContactSheet(contact: $newContact)
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
-                        Button("Dismiss") {
+                        Button("Cancel") {
                             isPresentingNewContactSheet = false
                         }
                     }
                     ToolbarItem(placement: .confirmationAction) {
-                        Button("Add") {
+                        Button("Save") {
                             contacts.append(newContact)
                             isPresentingNewContactSheet = false
                         }

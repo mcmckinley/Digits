@@ -13,19 +13,28 @@ struct EditContactsView: View {
 
     @State var isDisplayingAllContactsSheet: Bool = false
     
-    @State private var isDisplayingEditContactSheet: Bool = false
+    @State private var isPresentingNewContactSheet: Bool = false
+    
+    func removeContact(at offsets: IndexSet) {
+        contacts.remove(atOffsets: offsets)
+    }
     
     var body: some View {
         
         NavigationStack {
-            List($contacts.filter{$0.allowed.wrappedValue}) { $contact in
-                NavigationLink(destination: EditContactSheet(contact: $contact)) {
-                    Text(contact.name)
+            List {
+                ForEach($contacts.filter{$0.allowed.wrappedValue}) { $contact in
+                    NavigationLink(destination: EditContactSheet(contact: $contact)) {
+                        Text(contact.name)
+                    }
                 }
+                .onDelete(perform: { indexSet in
+                    removeContact(at: indexSet)
+                })
             }
             .toolbar {
                 Button(action: {
-                    isDisplayingEditContactSheet = true
+                    isPresentingNewContactSheet = true
                 }) {
                     Image(systemName: "plus")
                 }
@@ -45,8 +54,8 @@ struct EditContactsView: View {
                 
             }
         }
-        .sheet(isPresented: $isDisplayingEditContactSheet){
-            NewContactSheet(contacts: $contacts, isPresentingNewContactSheet: $isDisplayingEditContactSheet)
+        .sheet(isPresented: $isPresentingNewContactSheet){
+            NewContactSheet(contacts: $contacts, isPresentingNewContactSheet: $isPresentingNewContactSheet)
         }
         .sheet(isPresented: $isDisplayingAllContactsSheet) {
             AllContactsView(contacts: $contacts)
