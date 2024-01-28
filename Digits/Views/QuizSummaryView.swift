@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct QuizSummaryView: View {
-    let responses: [Response]
+    @Binding var responses: [Response]
     @Binding var quizIsFinished: Bool
     @Environment(\.dismiss) private var dismiss
     
@@ -17,15 +17,18 @@ struct QuizSummaryView: View {
     }
     
     var accuracy: Int {
-        Int(100 * numCorrect/responses.count)
+        if responses.count > 0 {
+            Int(100 * numCorrect/responses.count)
+        } else {
+            0
+        }
     }
     
     var message: String {
-        if      accuracy == 100 { return "Perfect!" }
-        else if accuracy > 80 { return "Good job!" }
-        else if accuracy > 60 { return "Room to improve" }
-        else if accuracy > 40 { return "Better luck next time" }
-        else                  { return "Yikes... try again?"}
+        if      accuracy == 100 { return "Flawless!" }
+        else if accuracy > 75 { return "Great job!" }
+        else if accuracy > 50 { return "Nice try!" }
+        else                  { return "Try again?"}
     }
     
     @Environment(\.colorScheme) var colorScheme
@@ -91,6 +94,8 @@ struct QuizSummaryView: View {
             }
             Button(action: {
                 quizIsFinished = false
+                responses = []
+
             }) {
                 Text("New Quiz")
                     .bold()
@@ -106,6 +111,6 @@ struct QuizSummaryView: View {
 }
 
 #Preview {
-    QuizSummaryView(responses: Response.sampleData, quizIsFinished: .constant(true))
+    QuizSummaryView(responses: .constant(Response.sampleData), quizIsFinished: .constant(true))
 }
 

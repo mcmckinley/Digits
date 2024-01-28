@@ -105,6 +105,8 @@ struct QuizActiveView: View {
                 } else {
                     contactIndex+=1
                 }
+            } else {
+                feedback(correct: false)
             }
         }
     }
