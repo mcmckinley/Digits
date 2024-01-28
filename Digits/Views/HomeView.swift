@@ -30,7 +30,7 @@ struct HomeView: View {
                         .cornerRadius(10)
                     
                 }
-                NavigationLink(destination: QuizView(contacts: contacts)) {
+                NavigationLink(destination: QuizView(contacts: contacts.filter{$0.enabled}) ) {
                     Text("Start")
                         .bold()
                         .foregroundColor(.white)

@@ -9,23 +9,21 @@ import SwiftUI
 import Foundation
 
 struct QuizActiveView: View {
-    let contacts: [Contact]
+    @State var contacts: [Contact]
+    
+    @State private var contactIndex: Int = 0
+    
     @Binding var responses: [Response]
+    
     @Binding var quizIsFinished: Bool
 
     // The currently entered number by the user
-    @State var phoneNumber: String = ""
-    
-    // Split up version of the user's current answer
-    @State private var userEntryArray: [String] = [] //["1", "1","1","1","1","1","1","1","1","1"]
+    @State var userEntry: String = ""
+    // Same as userEntry, but split into characters
+    @State private var userEntryArray: [String] = []
     
     // Whether the user is focused on the textbox - necessary, I think
     @FocusState private var isFocused: Bool
-    
-    // List of the user's responses
-    
-    // Current contact in question
-    @State private var currentContact: Contact = Contact.sampleData[0]
     
     @Environment(\.colorScheme) var colorScheme
 
@@ -34,7 +32,7 @@ struct QuizActiveView: View {
     @State var greenFeedback: Double = 0
     @State var blueFeedback: Double = 0
     
-    // Handle the text color flashin based on
+    // Handle the text color flashing based on if asnwer is correct
     private func feedback(correct: Bool){
         let lightMode: Bool = (colorScheme == .light)
         
@@ -81,25 +79,51 @@ struct QuizActiveView: View {
         blueFeedback  = colorScheme == .light ? 0 : 1
         greenFeedback = colorScheme == .light ? 0 : 1
     }
+    
+    // Handle a response, either when submitted or skipped
+    private func handleResponse(skipped: Bool = false){
+        if skipped {
+            userEntry = "??????????"
+        }
+
+        responses.append(
+            Response(answer: contacts[contactIndex].number,
+                     userResponse: userEntry,
+                     contactName: contacts[contactIndex].name)
+            )
+        
+        userEntry = ""
+        userEntryArray = []
+        
+        if let lastResponse = responses.last {
+            if lastResponse.isCorrect {
+                feedback(correct: true)
+                //timeRemaining = timePerQuestion
+
+                if contactIndex == contacts.count-1 {
+                    quizIsFinished = true
+                } else {
+                    contactIndex+=1
+                }
+            }
+        }
+    }
+    
+    
 
     var body: some View {
         VStack {
             // Enter <person>'s digits
+            //Text("\(timeRemaining)")
             HStack {
                 Spacer().frame(width: 10)
-                Text("Enter")
-                    .font(.title)
-                    .bold()
-                Text("\(currentContact.name)'s")
-                    .font(.title)
-                    .bold()
-                Text("digits:")
+                Text("Enter \(contacts[contactIndex].name)'s digits:")
                     .font(.title)
                     .bold()
                 Spacer()
             }
             .foregroundColor(Color(red: redFeedback, green: greenFeedback, blue: blueFeedback))
-            .onChange(of: colorScheme, initial: true) { newColorScheme, a in
+            .onChange(of: colorScheme, initial: true) { _, _ in
                 updateColors()
             }
 
@@ -138,37 +162,28 @@ struct QuizActiveView: View {
                     PhoneNumberFrameCard()
                     
                     // Where the program receives input - this is invisible
-                    TextField("", text: $phoneNumber)
-                        .keyboardType(.numberPad)
-                        .opacity(0)
-                        .font(.system(size: 24))
-                        .focused($isFocused)
-                        .padding([.leading], 3)
-                        .onAppear {
-                            isFocused = true
+                    TextField("", text: $userEntry)
+                    .keyboardType(.numberPad)
+                    .opacity(0)
+                    .font(.system(size: 24))
+                    .focused($isFocused)
+                    .padding([.leading], 3)
+                    .onAppear {
+                        isFocused = true
+                    }
+                    .onChange(of: userEntry, initial: false) { _, currentNumber in
+                        
+                        userEntryArray = userEntry.map{String($0)}
+                        
+                        if currentNumber.count == 10 {
+                            handleResponse()
                         }
-                        .onChange(of: phoneNumber, initial: false) { previousNumber, currentNumber in
-                            userEntryArray = phoneNumber.map{String($0)}
-                            
-                            if currentNumber.count == 10 {
-                                responses.append(Response(answer: currentContact.number, userResponse: phoneNumber, contactName: currentContact.name))
-                                
-                                // If a correct asnwer is given, assign a new random contact
-                                if let lastResponse = responses.last, let randomContact = Contact.sampleData.randomElement() {
-                                    feedback(correct: lastResponse.isCorrect)
-                                    phoneNumber = ""
-
-                                    if lastResponse.isCorrect {
-                                        currentContact = randomContact
-                                        if responses.count == 3 {
-                                            quizIsFinished = true
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                    }
                 }
             }
+        }
+        .onAppear {
+            contacts.shuffle()
         }
     }
     
