@@ -115,9 +115,10 @@ struct QuizActiveView: View {
 
     var body: some View {
         VStack {
+            Spacer().frame(height: 120)
+
             // Enter <person>'s digits
-            //Text("\(timeRemaining)")
-            HStack {
+                HStack {
                 Spacer().frame(width: 10)
                 Text("Enter \(contacts[contactIndex].name)'s digits:")
                     .font(.title)

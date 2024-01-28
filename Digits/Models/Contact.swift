@@ -14,6 +14,7 @@ struct Contact: Identifiable {
     var numberFull: String {
         formatNumber()
     }
+    var editingNumber: String
     
     /// Enabled:
     ///     true: Will show up in quiz
@@ -41,6 +42,7 @@ struct Contact: Identifiable {
         self.id = id
         self.name = name
         self.number = number
+        self.editingNumber = number
         self.enabled = enabled
         self.allowed = allowed
     }

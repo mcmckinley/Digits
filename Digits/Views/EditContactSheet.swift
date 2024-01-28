@@ -11,14 +11,19 @@ struct EditContactSheet: View {
                 TextField("Contact name", text: $contact.name)
             }
             Section(header: Text("Contact's digits")){
-                TextField("Phone number", text: $contact.number)
+                TextField("Phone number", text: $contact.editingNumber)
                     .bold()
+                    .onChange(of: contact.editingNumber) { _, newValue in
+                        if newValue.count == 10 {
+                            contact.number = contact.editingNumber
+                        }
+                    }
                 HStack {
                     Text("Formatted: ")
                     Spacer()
-                    Text(contact.numberFull)
+                    Text(contact.editingNumber.count == 10 ? contact.numberFull : "Please enter 10 digits")
                 }
-            }   
+            }
         }
     }
 }
