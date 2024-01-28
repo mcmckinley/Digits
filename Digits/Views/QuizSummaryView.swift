@@ -35,7 +35,6 @@ struct QuizSummaryView: View {
     
     var rectangleColor: Color {
         if colorScheme == .light {
-            print("CS: ", colorScheme)
             return Color(red: 0.97, green: 0.97, blue: 0.97)
         } else {
             return Color(red: 0.1, green: 0.1, blue: 0.1)

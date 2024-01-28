@@ -15,6 +15,7 @@ struct EditQuizSheet: View {
     
     var body: some View {
         Form {
+            /*
             Section(header: Text("Time per question")) {
                 HStack {
                     Slider(value: $time, in: 5...60, step: 1) {
@@ -24,6 +25,7 @@ struct EditQuizSheet: View {
                     Text("\(Int(time)) seconds")
                 }
             }
+             */
             Section(header: Text("Enabled contacts")) {
                 ForEach($contacts) { $contact in
                     if contact.enabled {
