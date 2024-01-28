@@ -11,10 +11,27 @@ import SwiftUI
 
 @main
 struct DigitsApp: App {
-    @State var contacts: [Contact] = Contact.sampleData
+    //@State var contacts: [Contact] = Contact.sampleData
+    @StateObject private var store = ContactStore()
+    
     var body: some Scene {
         WindowGroup {
-            HomeView(contacts: $contacts)
+            HomeView(contacts: $store.contacts){
+                Task {
+                    do {
+                        try await store.save(contacts: store.contacts)
+                    } catch {
+                        fatalError(error.localizedDescription)
+                    }
+                }
+            }
+            .task {
+                do {
+                    try await store.load()
+                } catch {
+                    fatalError(error.localizedDescription)
+                }
+            }
         }
     }
 }

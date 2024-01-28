@@ -12,7 +12,12 @@ import SwiftUI
 struct HomeView: View {
     
     @Binding var contacts: [Contact]
-            
+    
+    @Environment(\.scenePhase) private var scenePhase
+    let saveAction: ()->Void
+
+    
+    
     var body: some View {
         NavigationStack {
             if (contacts.filter{$0.allowed}).count > 0 {
@@ -58,9 +63,12 @@ struct HomeView: View {
                 Spacer()
             }
         }
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .inactive { saveAction() }
+        }
     }
 }
 
 #Preview {
-    HomeView(contacts: .constant(Contact.sampleData))
+    HomeView(contacts: .constant(Contact.sampleData), saveAction: {})
 }
