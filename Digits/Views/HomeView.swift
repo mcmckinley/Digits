@@ -7,26 +7,21 @@ struct HomeView: View {
     @State private var isPresentingSettingsView = false
     
     @State var isInQuizView = false
+    
+    @Environment(\.colorScheme) var colorScheme
+    var lightGrey = Color(red: 0.9, green: 0.9, blue: 0.9)
+    var darkGrey = Color(red: 0.3, green: 0.3, blue: 0.3)
+    var disabledColor: Color {
+        colorScheme == .light ? lightGrey : darkGrey
+    }
 
     var body: some View {
         NavigationStack {
             
-            if (contacts.filter{$0.enabled}).count > 0 {
-                List($contacts) { $contact in
-                    if contact.enabled {
-                        HStack {
-                            Button(action: {
-                                print("hello from \(contact.name)")
-                            }) {
-                                Image(systemName: "plus.circle.fill")
-                            }
-                            NavigationLink(destination: ContactDetailSheet(contact: $contact)){
-                                ContactCard(contact: $contact)
-                            }
-                            
-                        }
-                        
-                    }
+            if contacts.count > 0 {
+                List($contacts.sorted(by: {$0.enabled.wrappedValue && !$1.enabled.wrappedValue})) { $contact in
+                    ContactCard(contact: $contact)
+                        //.listRowBackground(contact.enabled ? disabledColor : Color.clear)
                 }
                 .navigationTitle("Digits Quiz")
             } else {
