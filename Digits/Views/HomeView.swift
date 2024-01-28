@@ -19,7 +19,8 @@ struct HomeView: View {
         NavigationStack {
             
             if contacts.count > 0 {
-                List($contacts.sorted(by: {$0.enabled.wrappedValue && !$1.enabled.wrappedValue})) { $contact in
+                // Sort contacts by enabled first and disabled last, then filter out those that are ignored
+                List($contacts.sorted(by: {$0.enabled.wrappedValue && !$1.enabled.wrappedValue}).filter{$0.allowed.wrappedValue}) { $contact in
                     ContactCard(contact: $contact)
                         //.listRowBackground(contact.enabled ? disabledColor : Color.clear)
                 }

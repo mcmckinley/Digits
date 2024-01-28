@@ -16,76 +16,32 @@ struct EditQuizSheet: View {
     
     
     var body: some View {
-        Form {
-            Section(header: Text("Enabled contacts")) {
-                ForEach($contacts) { $contact in
-                    if contact.enabled {
-                        Button(action : {
-                            
-                        }){
-                            HStack {
-                                Text(contact.name)
-                                    .foregroundColor(.black)
-                                Spacer()
-                                Button(action : {
-                                    contact.enabled = false
-                                }) {
-                                    Image(systemName: "minus.circle.fill")
-                                }
-                            }
-                        }
-                    }
+        
+        NavigationStack {
+            List($contacts.filter{$0.allowed.wrappedValue}) { $contact in
+                NavigationLink(destination: EditContactSheet(contact: $contact)) {
+                    Text(contact.name)
                 }
             }
-            Section(header: Text("Disabled contacts")) {
-                ForEach($contacts) { $contact in
-                    if !contact.enabled && contact.allowed {
-                        HStack {
-                            Text(contact.name)
-                            Spacer()
-                            Button(action : {
-                                contact.enabled = true
-                            }) {
-                                Image(systemName: "plus.circle.fill")
-                            }
-                        }
-                    }
-                }
-            }
-            Section(header: Text("Additional Settings")){
-                HStack {
-                    Text("See All Contacts")
-                    Spacer()
-                    Button(action : {
-                        isDisplayingAllContactsSheet = true;
-                    }) {
-                        Image(systemName: "chevron.right")
-                    }
-                }
+            .navigationTitle("Edit contacts")
+        
+            Button(action: {
+                isDisplayingAllContactsSheet = true
+            }) {
+                Text("See hidden contacts")
+                    .bold()
+                    .foregroundColor(.white)
+                    .padding([.top, .bottom], 16)
+                    .padding([.leading, .trailing], 40)
+                    .background(Color.gray)
+                    .cornerRadius(10)
+                
             }
         }
+        
         .sheet(isPresented: $isDisplayingAllContactsSheet) {
             AllContactsView(contacts: $contacts)
         }
-        /*
-        .sheet(isPresented: $isDisplayingEditContactSheet) {
-            EditContactSheet(contact: $selectedContact, isDisplayingEditContactSheet: $isDisplayingEditContactSheet)
-                .toolbar {
-                    ToolbarItem(placement: .cancellationAction) {
-                        Button("Cancel") {
-                            $isDisplayingEditContactSheet = false
-                        }
-                    }
-                    ToolbarItem(placement: .confirmationAction) {
-                        Button("Done") {
-                            $isDisplayingEditContactSheet = false
-                            scrum = editingScrum
-                        }
-                    }
-                }
-        }
-         */
-         
     }
 }
 
