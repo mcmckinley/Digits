@@ -29,9 +29,7 @@ struct HomeView: View {
             } else {
                 // Error message if all contacts are ignored
                 List {
-                    Text("No contacts selected.")
-                    Text("Adding straight from your contacts: on your phone, go to Settings > Digits Quiz and allow the app to view your contacts. Then click the settings icon down below, and click \"See hidden contacts\"")
-                    Text("Creating your own: click \"Settings\" and press the + icon in the top right")
+                    Text("Go to settings to add contacts!")
                 }
                 .navigationTitle("Digits Quiz")
             }

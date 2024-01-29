@@ -1,15 +1,13 @@
-//
-//  ContactStore.swift
-//  Digits
-//
-//  Created by Michael McKinley
-//
+/*
+See LICENSE folder for this sample’s licensing information.
+ */
 
 import Foundation
 
 @MainActor
 class ContactStore: ObservableObject {
     @Published var contacts: [Contact] = []
+
     
     private static func fileURL() throws -> URL {
         try FileManager.default.url(for: .documentDirectory,
