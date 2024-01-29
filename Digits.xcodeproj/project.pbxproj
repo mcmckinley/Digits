@@ -15,6 +15,7 @@
 		4C0209C92B57624D0013E015 /* DigitsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0209C82B57624D0013E015 /* DigitsUITestsLaunchTests.swift */; };
 		4C0209D72B5763070013E015 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0209D62B5763070013E015 /* Contact.swift */; };
 		4C0209DA2B57663E0013E015 /* ContactCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0209D92B57663E0013E015 /* ContactCard.swift */; };
+		4C2BDCAF2B67829100F303D5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4C2BDCAE2B67829100F303D5 /* README.md */; };
 		4C3AF3FF2B66D7DA00EFE516 /* NewContactSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AF3FE2B66D7DA00EFE516 /* NewContactSheet.swift */; };
 		4C3AF4032B67167500EFE516 /* ContactStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AF4022B67167500EFE516 /* ContactStore.swift */; };
 		4C3AF4052B671CCF00EFE516 /* ErrorWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AF4042B671CCF00EFE516 /* ErrorWrapper.swift */; };
@@ -61,6 +62,7 @@
 		4C0209C82B57624D0013E015 /* DigitsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		4C0209D62B5763070013E015 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		4C0209D92B57663E0013E015 /* ContactCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCard.swift; sourceTree = "<group>"; };
+		4C2BDCAE2B67829100F303D5 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		4C3AF3FE2B66D7DA00EFE516 /* NewContactSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContactSheet.swift; sourceTree = "<group>"; };
 		4C3AF4022B67167500EFE516 /* ContactStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactStore.swift; sourceTree = "<group>"; };
 		4C3AF4042B671CCF00EFE516 /* ErrorWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorWrapper.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 		4C02099F2B57624B0013E015 = {
 			isa = PBXGroup;
 			children = (
+				4C2BDCAD2B67824400F303D5 /* README */,
 				4C3AF4082B671D9500EFE516 /* LICENSE */,
 				4C0209AA2B57624B0013E015 /* Digits */,
 				4C0209BB2B57624D0013E015 /* DigitsTests */,
@@ -189,6 +192,14 @@
 				4C3AF40D2B671E6900EFE516 /* ErrorView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		4C2BDCAD2B67824400F303D5 /* README */ = {
+			isa = PBXGroup;
+			children = (
+				4C2BDCAE2B67829100F303D5 /* README.md */,
+			);
+			path = README;
 			sourceTree = "<group>";
 		};
 		4C3AF4082B671D9500EFE516 /* LICENSE */ = {
@@ -305,6 +316,7 @@
 			files = (
 				4C3AF40A2B671DBA00EFE516 /* LICENSE in Resources */,
 				4C0209B32B57624D0013E015 /* Preview Assets.xcassets in Resources */,
+				4C2BDCAF2B67829100F303D5 /* README.md in Resources */,
 				4C0209B02B57624D0013E015 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
