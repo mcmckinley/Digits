@@ -16,8 +16,6 @@ struct HomeView: View {
     @Environment(\.scenePhase) private var scenePhase
     let saveAction: ()->Void
 
-    
-    
     var body: some View {
         NavigationStack {
             if (contacts.filter{$0.allowed}).count > 0 {

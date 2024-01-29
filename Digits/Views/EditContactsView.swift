@@ -62,16 +62,15 @@ struct EditContactsView: View {
                     .replacingOccurrences(of: "-", with: "")
                     .replacingOccurrences(of: " ", with: "")
                 
-                // Use the contact information as needed
-                print("Name: \(firstName) \(lastName), Phone Number: \(phoneNumber)")
-                
                 if phoneNumber.count == 10 && firstName.count > 0 {
-                    contacts.append(Contact(name: firstName + " " + lastName, number: phoneNumber))
+                    // Switch to the main thread to modify contacts, which is a published variable
+                    DispatchQueue.main.async {
+                        contacts.append(Contact(name: firstName + " " + lastName, number: phoneNumber))
+                    }
                 }
                 
             }
         } catch {
-            // Handle the error
             print("Error fetching contacts: \(error)")
         }
     }
@@ -81,7 +80,7 @@ struct EditContactsView: View {
         
         NavigationStack {
             List {
-                if ($contacts.filter{$0.allowed.wrappedValue}).count == 0 {
+                if ($contacts.filter{$0.allowed.wrappedValue}).count > 0 {
                     ForEach($contacts.filter{$0.allowed.wrappedValue}) { $contact in
                         NavigationLink(destination: EditContactSheet(contact: $contact)) {
                             Text(contact.name)
@@ -104,6 +103,7 @@ struct EditContactsView: View {
             .navigationTitle("Edit contacts")
         
             HStack{
+                // Load From Device button
                 Button(action: {
                      showAlert = true
                 }) {
@@ -125,6 +125,7 @@ struct EditContactsView: View {
                         })
                     )
                 }
+                // See Hidden Contacts button
                 Button(action: {
                     isPresentingAllContactsSheet = true
                 }) {

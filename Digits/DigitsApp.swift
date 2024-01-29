@@ -14,9 +14,7 @@ import Contacts
 struct DigitsApp: App {
     @StateObject private var store = ContactStore()
     @State private var errorWrapper: ErrorWrapper?
-    
 
-    
     var body: some Scene {
         WindowGroup {
             HomeView(contacts: $store.contacts){
