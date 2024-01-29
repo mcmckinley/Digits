@@ -11,8 +11,9 @@ import SwiftUI
 
 @main
 struct DigitsApp: App {
-    //@State var contacts: [Contact] = Contact.sampleData
     @StateObject private var store = ContactStore()
+    @State private var errorWrapper: ErrorWrapper?
+
     
     var body: some Scene {
         WindowGroup {
@@ -21,7 +22,7 @@ struct DigitsApp: App {
                     do {
                         try await store.save(contacts: store.contacts)
                     } catch {
-                        fatalError(error.localizedDescription)
+                        errorWrapper = ErrorWrapper(error: error, guidance: "Try again later.")
                     }
                 }
             }
@@ -29,8 +30,13 @@ struct DigitsApp: App {
                 do {
                     try await store.load()
                 } catch {
-                    fatalError(error.localizedDescription)
+                    errorWrapper = ErrorWrapper(error: error, guidance: "Digits will load sample data and continue.")
                 }
+            }
+            .sheet(item: $errorWrapper) {
+                store.contacts = Contact.sampleData
+            } content: { wrapper in
+                ErrorView(errorWrapper: wrapper)
             }
         }
     }

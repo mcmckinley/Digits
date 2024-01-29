@@ -55,9 +55,9 @@ struct Contact: Identifiable, Codable {
         Contact(name: "Twos",   number: "2222222222", enabled: true,  allowed: true),
         Contact(name: "Threes", number: "3333333333", enabled: true,  allowed: true),
     
-        Contact(name: "Fours",  number: "4444444444"),
-        Contact(name: "Fives",  number: "5555555555"),
-        Contact(name: "Sixes",  number: "6666666666"),
+        Contact(name: "Fours",  number: "4444444444", enabled: false, allowed: true),
+        Contact(name: "Fives",  number: "5555555555", enabled: false, allowed: true),
+        Contact(name: "Sixes",  number: "6666666666", enabled: false, allowed: true),
     
         Contact(name: "Sevens", number: "7777777777"),
         Contact(name: "Eights", number: "8888888888"),
