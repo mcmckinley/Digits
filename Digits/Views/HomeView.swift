@@ -47,23 +47,33 @@ struct HomeView: View {
             HStack {
                 Spacer()
                 NavigationLink(destination: SettingsView(contacts: $contacts)){
-                    Text("Settings")
+                    HStack{
+                        Spacer()
+                        Text("Settings")
+                        Spacer()
+                    }
+                    .bold()
+                    .foregroundColor(.white)
+                    .padding([.top, .bottom], 16)
+                    .padding([.leading, .trailing], 0)
+                    .background(Color.gray)
+                    .cornerRadius(10)
+                }
+                if (contacts.filter{$0.enabled}).count > 0{
+                    // Spacer between buttons
+                    Spacer()
+                    NavigationLink(destination: QuizView(contacts: contacts.filter{$0.enabled}) ) {
+                        HStack {
+                            Spacer()
+                            Text("Start")
+                            Spacer()
+                        }
                         .bold()
                         .foregroundColor(.white)
                         .padding([.top, .bottom], 16)
-                        .padding([.leading, .trailing], 40)
-                        .background(Color.gray)
+                        .padding([.leading, .trailing], 16)
+                        .background(Color.blue)
                         .cornerRadius(10)
-                }
-                if (contacts.filter{$0.enabled}).count > 0{
-                    NavigationLink(destination: QuizView(contacts: contacts.filter{$0.enabled}) ) {
-                        Text("Start")
-                            .bold()
-                            .foregroundColor(.white)
-                            .padding()
-                            .padding([.leading, .trailing], 40)
-                            .background(Color.blue)
-                            .cornerRadius(10)
                     }
                 }
                 Spacer()
