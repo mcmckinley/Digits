@@ -15,6 +15,8 @@ struct HomeView: View {
     
     @Environment(\.scenePhase) private var scenePhase
     let saveAction: ()->Void
+    
+    @State var isDisplayingAppInfoSheet = false
 
     var body: some View {
         NavigationStack {
@@ -58,9 +60,20 @@ struct HomeView: View {
                 }
                 Spacer()
             }
+            // Info button
+            .toolbar {
+                Button(action: {
+                    isDisplayingAppInfoSheet = true;
+                }) {
+                    Image(systemName: "info.circle")
+                }
+            }
         }
         .onChange(of: scenePhase) { _, phase in
             if phase == .inactive { saveAction() }
+        }
+        .sheet(isPresented: $isDisplayingAppInfoSheet){
+            AppInfoSheet()
         }
     }
 }
