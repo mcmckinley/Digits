@@ -18,7 +18,9 @@ struct EditContactsView: View {
     @State private var isPresentingAllContactsSheet: Bool = false
     @State private var isPresentingNewContactSheet: Bool = false
     
-    @State private var showAlert = false
+    @State private var loadDataAlert = false
+    @State private var clearDataAlert = false
+
     
     func removeContact(at offsets: IndexSet) {
         contacts.remove(atOffsets: offsets)
@@ -80,18 +82,78 @@ struct EditContactsView: View {
         
         NavigationStack {
             List {
-                if ($contacts.filter{$0.allowed.wrappedValue}).count > 0 {
-                    ForEach($contacts.filter{$0.allowed.wrappedValue}) { $contact in
-                        NavigationLink(destination: EditContactSheet(contact: $contact)) {
-                            Text(contact.name)
+                Section {
+                    if ($contacts.filter{$0.allowed.wrappedValue}).count > 0 {
+                        ForEach($contacts.filter{$0.allowed.wrappedValue}) { $contact in
+                            NavigationLink(destination: EditContactSheet(contact: $contact)) {
+                                Text(contact.name)
+                            }
+                        }
+                        .onDelete(perform: { indexSet in
+                            removeContact(at: indexSet)
+                        })
+                    } else {
+                        Text("Click the Load From Device button to import contacts. Then, click on See All Contacts to choose contacts to see in the app.")
+                    }
+                    NavigationLink(destination: AllContactsView(contacts: $contacts)){
+                        Text("See all contacts (\(contacts.count))")
+                    }
+                }
+                
+                
+                Section {
+                    Button(action : {
+                        isPresentingNewContactSheet = true
+                    }) {
+                        HStack{
+                            Text("Create New Contact")
+                            //    .foregroundStyle(Color(.black))
+                            Spacer()
+                            Image(systemName: "plus.circle")
                         }
                     }
-                    .onDelete(perform: { indexSet in
-                        removeContact(at: indexSet)
-                    })
-                } else {
-                    Text("Click the Load From Device button to import contacts. Then, click on See Hidden Contacts to choose contacts to see in the app.")
                 }
+                
+                
+                
+                Button(action: {
+                     loadDataAlert = true
+                }) {
+                    Text("Load From Device")
+                }
+                .alert(isPresented: $loadDataAlert) {
+                    Alert(
+                        title: Text("Load contacts from device"),
+                        message: Text("This will reset your contact data. Continue?"),
+                        primaryButton: .cancel(Text("Cancel")),
+                        secondaryButton: .default(Text("Continue"), action: {
+                            requestContactsAccess()
+                        })
+                    )
+                }
+                
+                Button(action: {
+                     clearDataAlert = true
+                }) {
+                    Text("Clear Data")
+                        .foregroundColor(.red)
+                }
+                .alert(isPresented: $clearDataAlert) {
+                    Alert(
+                        title: Text("Clear app data"),
+                        message: Text("This will clear the app's data, including contacts that you have created. Continue?"),
+                        primaryButton: .cancel(Text("Cancel")),
+                        secondaryButton: .default(Text("Continue"), action: {
+                            contacts = []
+                        })
+                    )
+                }
+                
+                
+                
+                
+                
+                
             }
             .toolbar {
                 Button(action: {
@@ -101,11 +163,11 @@ struct EditContactsView: View {
                 }
             }
             .navigationTitle("Edit contacts")
-        
+            
             HStack{
                 // Load From Device button
                 Button(action: {
-                     showAlert = true
+                    loadDataAlert = true
                 }) {
                     Text("Load from device")
                         .bold()
@@ -115,7 +177,7 @@ struct EditContactsView: View {
                         .background(Color.blue)
                         .cornerRadius(10)
                 }
-                .alert(isPresented: $showAlert) {
+                .alert(isPresented: $loadDataAlert) {
                     Alert(
                         title: Text("Load contacts from device"),
                         message: Text("This will reset your data. Continue?"),
@@ -127,6 +189,7 @@ struct EditContactsView: View {
                 }
                 // See Hidden Contacts button
                 Button(action: {
+                    // Can be made into a NavigationLink?
                     isPresentingAllContactsSheet = true
                 }) {
                     Text("See hidden contacts")
@@ -142,9 +205,11 @@ struct EditContactsView: View {
         .sheet(isPresented: $isPresentingNewContactSheet){
             NewContactSheet(contacts: $contacts, isPresentingNewContactSheet: $isPresentingNewContactSheet)
         }
+        /*
         .sheet(isPresented: $isPresentingAllContactsSheet) {
             AllContactsView(contacts: $contacts)
         }
+         */
     }
 }
 
