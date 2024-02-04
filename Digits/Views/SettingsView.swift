@@ -1,5 +1,5 @@
 //
-//  EditContactsView.swift
+//  SettingsView.swift
 //  Digits
 //
 //  Created by Michael McKinley
@@ -12,7 +12,7 @@ import SwiftUI
 import Contacts
 
 
-struct EditContactsView: View {
+struct SettingsView: View {
     @Binding var contacts: [Contact]
 
     @State private var isPresentingAllContactsSheet: Bool = false
@@ -161,8 +161,8 @@ struct EditContactsView: View {
     }
 }
 
-struct EditQuizView_Previews: PreviewProvider {
+struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        EditContactsView(contacts: .constant(Contact.sampleData))
+        SettingsView(contacts: .constant(Contact.sampleData))
     }
 }

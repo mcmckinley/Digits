@@ -46,7 +46,7 @@ struct HomeView: View {
             // Settings and Start button
             HStack {
                 Spacer()
-                NavigationLink(destination: EditContactsView(contacts: $contacts)){
+                NavigationLink(destination: SettingsView(contacts: $contacts)){
                     Text("Settings")
                         .bold()
                         .foregroundColor(.white)
