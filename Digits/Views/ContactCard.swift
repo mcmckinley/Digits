@@ -20,7 +20,7 @@ struct ContactCard: View {
         if contact.enabled {
             HStack {
                 Text(contact.name)
-                    .font(.title)
+                    .font(.system(size: 20))
                     .bold()
                 
                 Spacer()
@@ -38,7 +38,7 @@ struct ContactCard: View {
             HStack {
                 HStack {
                     Text(contact.name)
-                        .font(.system(size: 24))
+                        .font(.system(size: 18))
                         .bold()
                     Spacer()
                     Text(contact.numberFull)

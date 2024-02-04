@@ -22,8 +22,17 @@ struct HomeView: View {
         NavigationStack {
             if (contacts.filter{$0.allowed}).count > 0 {
                 // Sort contacts by enabled first and disabled last, then filter out those that are ignored
-                List($contacts.sorted(by: {$0.enabled.wrappedValue && !$1.enabled.wrappedValue}).filter{$0.allowed.wrappedValue}) { $contact in
-                    ContactCard(contact: $contact)
+                List {
+                    Section {
+                        ForEach($contacts.filter{$0.enabled.wrappedValue && $0.allowed.wrappedValue}) { $contact in
+                            ContactCard(contact: $contact)
+                        }
+                    }
+                    Section (header: Text("Won't show in quiz")){
+                        ForEach($contacts.filter{!$0.enabled.wrappedValue && $0.allowed.wrappedValue}) { $contact in
+                            ContactCard(contact: $contact)
+                        }
+                    }
                 }
                 .navigationTitle("Digits Quiz")
             } else {
@@ -35,7 +44,6 @@ struct HomeView: View {
             }
             
             // Settings and Start button
-            
             HStack {
                 Spacer()
                 NavigationLink(destination: EditContactsView(contacts: $contacts)){
