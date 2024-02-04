@@ -42,8 +42,7 @@ struct EditContactsView: View {
             }
         }
     }
-    
-    
+
     func fetchContacts() {
         let store = CNContactStore()
         
@@ -77,45 +76,41 @@ struct EditContactsView: View {
         }
     }
 
-    
     var body: some View {
         
         NavigationStack {
             List {
                 Section {
-                    if ($contacts.filter{$0.allowed.wrappedValue}).count > 0 {
-                        ForEach($contacts.filter{$0.allowed.wrappedValue}) { $contact in
-                            NavigationLink(destination: EditContactSheet(contact: $contact)) {
-                                Text(contact.name)
-                            }
+                    // Contact names
+                    ForEach($contacts.filter{$0.allowed.wrappedValue}) { $contact in
+                        NavigationLink(destination: EditContactSheet(contact: $contact)) {
+                            Text(contact.name)
                         }
-                        .onDelete(perform: { indexSet in
-                            removeContact(at: indexSet)
-                        })
-                    } else {
-                        Text("Click the Load From Device button to import contacts. Then, click on See All Contacts to choose contacts to see in the app.")
                     }
+                    .onDelete(perform: { indexSet in
+                        removeContact(at: indexSet)
+                    })
+                    
+                    // See All Contacts button
                     NavigationLink(destination: AllContactsView(contacts: $contacts)){
                         Text("See all contacts (\(contacts.count))")
                     }
                 }
                 
-                
+                // Create New Contact button
                 Section {
                     Button(action : {
                         isPresentingNewContactSheet = true
                     }) {
                         HStack{
                             Text("Create New Contact")
-                            //    .foregroundStyle(Color(.black))
                             Spacer()
                             Image(systemName: "plus.circle")
                         }
                     }
                 }
                 
-                
-                
+                // Load From Device button
                 Button(action: {
                      loadDataAlert = true
                 }) {
@@ -132,6 +127,7 @@ struct EditContactsView: View {
                     )
                 }
                 
+                // Clear Data button
                 Button(action: {
                      clearDataAlert = true
                 }) {
@@ -148,13 +144,8 @@ struct EditContactsView: View {
                         })
                     )
                 }
-                
-                
-                
-                
-                
-                
             }
+            // Additional option to create a contact: plus symbol in top right
             .toolbar {
                 Button(action: {
                     isPresentingNewContactSheet = true
@@ -163,53 +154,10 @@ struct EditContactsView: View {
                 }
             }
             .navigationTitle("Edit contacts")
-            
-            HStack{
-                // Load From Device button
-                Button(action: {
-                    loadDataAlert = true
-                }) {
-                    Text("Load from device")
-                        .bold()
-                        .foregroundColor(.white)
-                        .padding([.top, .bottom], 16)
-                        .padding([.leading, .trailing], 12)
-                        .background(Color.blue)
-                        .cornerRadius(10)
-                }
-                .alert(isPresented: $loadDataAlert) {
-                    Alert(
-                        title: Text("Load contacts from device"),
-                        message: Text("This will reset your data. Continue?"),
-                        primaryButton: .cancel(Text("Cancel")),
-                        secondaryButton: .default(Text("Continue"), action: {
-                            requestContactsAccess()
-                        })
-                    )
-                }
-                // See Hidden Contacts button
-                Button(action: {
-                    // Can be made into a NavigationLink?
-                    isPresentingAllContactsSheet = true
-                }) {
-                    Text("See hidden contacts")
-                        .bold()
-                        .foregroundColor(.white)
-                        .padding([.top, .bottom], 16)
-                        .padding([.leading, .trailing], 12)
-                        .background(Color.gray)
-                        .cornerRadius(10)
-                }
-            }
         }
         .sheet(isPresented: $isPresentingNewContactSheet){
             NewContactSheet(contacts: $contacts, isPresentingNewContactSheet: $isPresentingNewContactSheet)
         }
-        /*
-        .sheet(isPresented: $isPresentingAllContactsSheet) {
-            AllContactsView(contacts: $contacts)
-        }
-         */
     }
 }
 
