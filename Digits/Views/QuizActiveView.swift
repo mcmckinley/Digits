@@ -93,23 +93,27 @@ struct QuizActiveView: View {
         responses.append(
             Response(answer: contacts[contactIndex].number,
                      userResponse: userEntry,
-                     contactName: contacts[contactIndex].name)
+                     contactName: contacts[contactIndex].name,
+                     wasSkipped: skipped
             )
-        
+        )
         userEntry = ""
         userEntryArray = []
         
         if let lastResponse = responses.last {
+            // Give the user feedback
             if lastResponse.isCorrect {
                 feedback(correct: true)
-
+            } else {
+                feedback(correct: false)
+            }
+            // Increment the contactIndex
+            if lastResponse.isCorrect || lastResponse.wasSkipped {
                 if contactIndex == contacts.count-1 {
                     quizIsFinished = true
                 } else {
                     contactIndex+=1
                 }
-            } else {
-                feedback(correct: false)
             }
         }
     }
@@ -121,6 +125,17 @@ struct QuizActiveView: View {
             // Adjust everything down a bit
             Spacer().frame(height: 120)
 
+            HStack {
+                Spacer().frame(width: 10)
+                Button (action: {
+                    handleResponse(skipped:true)
+                }) {
+                    Text("Skip")
+                        .foregroundColor(.red)
+                        .font(.system(size: 24))
+                }
+                Spacer()
+            }
             // Enter <person>'s digits
             HStack {
                 Spacer().frame(width: 10)
@@ -139,7 +154,7 @@ struct QuizActiveView: View {
             // The number you just entered: invisible if your previous answer was correct
             HStack {
                 if let lastResponse = responses.last {
-                    if !lastResponse.isCorrect {
+                    if !lastResponse.isCorrect && !lastResponse.wasSkipped {
                         AnswerCard(response: lastResponse)
                     }
                 }
