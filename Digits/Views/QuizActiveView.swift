@@ -122,9 +122,7 @@ struct QuizActiveView: View {
 
     var body: some View {
         VStack {
-            // Adjust everything down a bit
-            Spacer().frame(height: 120)
-
+            Spacer()
             HStack {
                 Spacer().frame(width: 10)
                 Button (action: {
@@ -208,7 +206,6 @@ struct QuizActiveView: View {
             contacts.shuffle()
         }
     }
-    
 }
 
 struct QuizActiveView_Previews: PreviewProvider {

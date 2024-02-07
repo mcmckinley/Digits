@@ -153,7 +153,7 @@ struct SettingsView: View {
                     Image(systemName: "plus")
                 }
             }
-            .navigationTitle("Edit contacts")
+            .navigationTitle("Settings")
         }
         .sheet(isPresented: $isPresentingNewContactSheet){
             NewContactSheet(contacts: $contacts, isPresentingNewContactSheet: $isPresentingNewContactSheet)
