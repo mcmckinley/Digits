@@ -22,13 +22,19 @@ struct AppInfoSheet: View {
 
             Text("Eric McKinley - Concept")
                 .font(.system(size: 18.0))
-
+            
+            Text("More info")
+                .bold()
+                .font(.system(size: 24.0))
+                .padding([.top], 10)
+            Text("https://mckinleydev.com/digits-quiz/")
+                .font(.system(size: 18.0))
 
             Text("Report bugs")
                 .bold()
                 .font(.system(size: 24.0))
                 .padding([.top], 10)
-            Text("Your feedback is highly appreciated as it helps improve the quality of the app.\nPlease share any issues you find via email at mxmckinley@gmail.com")
+            Text("Your feedback is highly appreciated.\nPlease share any issues you find via email at mxmckinley@gmail.com")
                 .font(.system(size: 18.0))
 
             Text("Developers: ")

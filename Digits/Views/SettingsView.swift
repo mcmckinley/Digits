@@ -21,24 +21,17 @@ struct SettingsView: View {
     @State private var loadDataAlert = false
     @State private var clearDataAlert = false
 
-    
     func removeContact(at offsets: IndexSet) {
         contacts.remove(atOffsets: offsets)
     }
     
     func requestContactsAccess() {
-        
         let store = CNContactStore()
         
         store.requestAccess(for: .contacts) { (granted, error) in
             if granted {
-                // Access granted, you can now perform any additional setup or navigate to your main view
-                print("Access to contacts granted.")
                 contacts = []
                 fetchContacts()
-            } else {
-                // Handle the case where access was not granted
-                print("Access to contacts was not granted.")
             }
         }
     }
@@ -69,7 +62,6 @@ struct SettingsView: View {
                         contacts.append(Contact(name: firstName + " " + lastName, number: phoneNumber))
                     }
                 }
-                
             }
         } catch {
             print("Error fetching contacts: \(error)")
@@ -77,7 +69,6 @@ struct SettingsView: View {
     }
 
     var body: some View {
-        
         NavigationStack {
             List {
                 Section {
@@ -90,7 +81,6 @@ struct SettingsView: View {
                     .onDelete(perform: { indexSet in
                         removeContact(at: indexSet)
                     })
-                    
                     // See All Contacts button
                     NavigationLink(destination: AllContactsView(contacts: $contacts)){
                         Text("See all contacts (\(contacts.count))")

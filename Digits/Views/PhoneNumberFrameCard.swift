@@ -16,87 +16,37 @@ struct PhoneNumberFrameCard: View {
                 .font(.system(size: 36))
                 .fontDesign(.monospaced)
                 .padding(3)
-            VStack {
-                Spacer().frame(height: 16)
-                Text("_")
-                    .font(.system(size: 32))
-                    .fontDesign(.monospaced)
-                    .padding(3)
-            }
-            VStack {
-                Spacer().frame(height: 16)
-                Text("_")
-                    .font(.system(size: 32, design: .rounded))
-                    .fontDesign(.monospaced)
-                    .padding(3)
-            }
-            VStack {
-                Spacer().frame(height: 16)
-                Text("_")
-                    .font(.system(size: 32, design: .rounded))
-                    .fontDesign(.monospaced)
-                    .padding(3)
-            }
+            Underscore()
+            Underscore()
+            Underscore()
             Text(")")
                 .font(.system(size: 36, design: .rounded))
                 .fontDesign(.monospaced)
-
-            VStack {
-                Spacer().frame(height: 16)
-                Text("_")
-                    .font(.system(size: 32, design: .rounded))
-                    .fontDesign(.monospaced)
-
-                    .padding(3)
-            }
-            VStack {
-                Spacer().frame(height: 16)
-                Text("_")
-                    .font(.system(size: 32, design: .rounded))
-                    .fontDesign(.monospaced)
-                    .padding(3)
-            }
-            VStack {
-                Spacer().frame(height: 16)
-                Text("_")
-                    .font(.system(size: 32, design: .rounded))
-                    .fontDesign(.monospaced)
-                    .padding(3)
-            }
+            Underscore()
+            Underscore()
+            Underscore()
             Text("-")
                 .font(.system(size: 28, design: .rounded))
                 .fontDesign(.monospaced)
-            VStack {
-                Spacer().frame(height: 16)
-                Text("_")
-                    .font(.system(size: 32, design: .rounded))
-                    .fontDesign(.monospaced)
-                    .padding(3)
-            }
-            VStack {
-                Spacer().frame(height: 16)
-                Text("_")
-                    .font(.system(size: 32, design: .rounded))
-                    .fontDesign(.monospaced)
-                    .padding(3)
-            }
-            VStack {
-                Spacer().frame(height: 16)
-                Text("_")
-                    .font(.system(size: 32, design: .rounded))
-                    .fontDesign(.monospaced)
-                    .padding(3)
-            }
-            VStack {
-                Spacer().frame(height: 16)
-                Text("_")
-                    .font(.system(size: 32, design: .rounded))
-                    .fontDesign(.monospaced)
-                    .padding(3)
-            }
+            Underscore()
+            Underscore()
+            Underscore()
+            Underscore()
             Spacer()
         }
         .foregroundColor(.gray)
+    }
+}
+
+struct Underscore: View {
+    var body: some View {
+        VStack {
+            Spacer().frame(height: 16)
+            Text("_")
+                .font(.system(size: 32, design: .rounded))
+                .fontDesign(.monospaced)
+                .padding(3)
+        }
     }
 }
 

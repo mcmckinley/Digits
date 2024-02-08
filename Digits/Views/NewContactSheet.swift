@@ -16,7 +16,6 @@ struct NewContactSheet: View {
     @Binding var contacts: [Contact]
     @Binding var isPresentingNewContactSheet: Bool
     
-    
     var body: some View {
         NavigationStack {
             EditContactSheet(contact: $newContact)

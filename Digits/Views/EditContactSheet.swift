@@ -37,7 +37,6 @@ struct EditContactSheet: View {
 }
 
 struct EditContactSheet_Previews: PreviewProvider {
-
     static var previews: some View {
         EditContactSheet(contact: .constant(Contact.sampleData[0]))
     }

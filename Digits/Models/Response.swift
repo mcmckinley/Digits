@@ -27,6 +27,7 @@ struct Response: Identifiable {
         userResponse == answer
     }
     
+    // True/false based on whether that digit is correct
     var rightAnswerAt: [Bool] {
         zip(answerArray, userResponseArray).map { $0 == $1 }
     }
@@ -48,7 +49,6 @@ struct Response: Identifiable {
         Response(answer: "3333333333", userResponse: "3333333333", contactName: "Threes"),
         Response(answer: "4444444444", userResponse: "4444444444", contactName: "Fours")
     ]
-    
     
     func formatNumber(number: String) -> String {
         let areaCode = number.prefix(3)

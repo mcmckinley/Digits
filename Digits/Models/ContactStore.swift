@@ -7,14 +7,12 @@ import Foundation
 @MainActor
 class ContactStore: ObservableObject {
     @Published var contacts: [Contact] = []
-
     
     private static func fileURL() throws -> URL {
         try FileManager.default.url(for: .documentDirectory,
                                             in: .userDomainMask,
                                             appropriateFor: nil,
                                             create: false)
-        
         .appendingPathComponent("Digits.data")
     }
     

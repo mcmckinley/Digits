@@ -122,7 +122,10 @@ struct QuizActiveView: View {
 
     var body: some View {
         VStack {
+            // Push everything to the bottom
             Spacer()
+            
+            // Skip button
             HStack {
                 Spacer().frame(width: 10)
                 Button (action: {
@@ -134,7 +137,8 @@ struct QuizActiveView: View {
                 }
                 Spacer()
             }
-            // Enter <person>'s digits
+            
+            // Enter \(person)'s digits
             HStack {
                 Spacer().frame(width: 10)
                 Text("Enter \(contacts[contactIndex].name)'s digits:")
@@ -142,13 +146,13 @@ struct QuizActiveView: View {
                     .bold()
                 Spacer()
             }
-            // Responsive feedback
+            
+            // Colorful feedback
             .foregroundColor(Color(red: redFeedback, green: greenFeedback, blue: blueFeedback))
             .onChange(of: colorScheme, initial: true) {
                 updateColors()
             }
 
-            
             // The number you just entered: invisible if your previous answer was correct
             HStack {
                 if let lastResponse = responses.last {
@@ -158,10 +162,8 @@ struct QuizActiveView: View {
                 }
             }
             
-            // Where you type the number
+            // Display of the number as the user types it
             ZStack {
-                
-                // Dynamic display of the user-entered phone number
                 HStack (spacing: 0){
                     Spacer().frame(width: 32)
                     ForEach(Array(userEntryArray.enumerated()), id: \.0) { index, char in
@@ -184,21 +186,19 @@ struct QuizActiveView: View {
                 
                 // Where the program receives input - this is invisible
                 TextField("", text: $userEntry)
-                .keyboardType(.numberPad)
-                .opacity(0)
-                .font(.system(size: 24))
-                .focused($isFocused)
-                .padding([.leading], 3)
-                .onAppear {
-                    isFocused = true
-                }
-                .onChange(of: userEntry, initial: false) { _, currentNumber in
-                    
-                    userEntryArray = userEntry.map{String($0)}
-                    
-                    if currentNumber.count == 10 {
-                        handleResponse()
+                    .keyboardType(.numberPad)
+                    .opacity(0)
+                    .font(.system(size: 24))
+                    .focused($isFocused)
+                    .padding([.leading], 3)
+                    .onAppear {
+                        isFocused = true
                     }
+                    .onChange(of: userEntry, initial: false) { _, currentNumber in
+                        userEntryArray = userEntry.map{String($0)}
+                        if currentNumber.count == 10 {
+                            handleResponse()
+                        }
                 }
             }
         }

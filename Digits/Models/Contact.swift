@@ -28,6 +28,15 @@ struct Contact: Identifiable, Codable {
     ///     false: Will not show up in settings screen
     var allowed: Bool
     
+    init(id: UUID = UUID(), name: String, number: String, enabled: Bool = false, allowed: Bool = false) {
+        self.id = id
+        self.name = name
+        self.number = number
+        self.editingNumber = number
+        self.enabled = enabled
+        self.allowed = allowed
+    }
+    
     func formatNumber()-> String{
         if number.count != 10 {
             return "Please enter 10 digits."
@@ -40,14 +49,6 @@ struct Contact: Identifiable, Codable {
         return "(\(areaCode)) \(prefix)-\(suffix)"
     }
     
-    init(id: UUID = UUID(), name: String, number: String, enabled: Bool = false, allowed: Bool = false) {
-        self.id = id
-        self.name = name
-        self.number = number
-        self.editingNumber = number
-        self.enabled = enabled
-        self.allowed = allowed
-    }
     
     static let sampleData: [Contact] =
     [
@@ -66,7 +67,6 @@ struct Contact: Identifiable, Codable {
     static var emptyContact: Contact {
         Contact(name: "", number: "")
     }
-    
 }
 
 
