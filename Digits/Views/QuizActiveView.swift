@@ -125,19 +125,6 @@ struct QuizActiveView: View {
             // Push everything to the bottom
             Spacer()
             
-            // Skip button
-            HStack {
-                Spacer().frame(width: 10)
-                Button (action: {
-                    handleResponse(skipped:true)
-                }) {
-                    Text("Skip")
-                        .foregroundColor(.red)
-                        .font(.system(size: 24))
-                }
-                Spacer()
-            }
-            
             // Enter \(person)'s digits
             HStack {
                 Spacer().frame(width: 10)
@@ -201,10 +188,20 @@ struct QuizActiveView: View {
                         }
                 }
             }
+            // Skip button
+            .toolbar {
+                Button(action: {
+                    handleResponse(skipped: true)
+                }) {
+                    Text("Skip Question")
+                        .foregroundStyle(Color(.red))
+                }
+            }
         }
         .onAppear {
             contacts.shuffle()
         }
+        
     }
 }
 
