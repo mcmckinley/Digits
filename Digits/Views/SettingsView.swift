@@ -11,7 +11,6 @@
 import SwiftUI
 import Contacts
 
-
 struct SettingsView: View {
     @Binding var contacts: [Contact]
 
@@ -95,7 +94,7 @@ struct SettingsView: View {
                         HStack{
                             Text("Create New Contact")
                             Spacer()
-                            Image(systemName: "plus.circle")
+                            Image(systemName: "plus")
                         }
                     }
                 }

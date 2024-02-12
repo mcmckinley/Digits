@@ -38,7 +38,7 @@ struct AllContactsView: View {
                             Spacer()
                             Button(action : {
                                 contact.allowed = true
-                                contact.enabled = false
+                                contact.enabled = true
                             }) {
                                 Image(systemName: "plus.circle.fill")
                             }
