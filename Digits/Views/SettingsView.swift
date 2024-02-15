@@ -81,8 +81,10 @@ struct SettingsView: View {
                         removeContact(at: indexSet)
                     })
                     // See All Contacts button
-                    NavigationLink(destination: AllContactsView(contacts: $contacts)){
-                        Text("See all contacts (\(contacts.count))")
+                    if contacts.count > 0 {
+                        NavigationLink(destination: AllContactsView(contacts: $contacts)){
+                            Text("See all contacts (\(contacts.count))")
+                        }
                     }
                 }
                 

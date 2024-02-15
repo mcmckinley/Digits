@@ -37,10 +37,20 @@ struct HomeView: View {
                 .navigationTitle("Digits Quiz")
             } else {
                 // Error message if all contacts are ignored
-                List {
-                    Text("Go to settings to add contacts!")
-                }
+                
+                // This empty list to enables use of navigationTitle
+                List {}.frame(height: 0)
                 .navigationTitle("Digits Quiz")
+                
+                // Display the text in the center of the screen
+                VStack(alignment: .center){
+                    Spacer()
+                    Text("No contacts selected. Go to Settings to add contacts.")
+                        .multilineTextAlignment(.center)
+                        .foregroundStyle(Color(.gray))
+                        .padding([.leading, .trailing], 30)
+                    Spacer()
+                }
             }
             
             // Settings and Start button

@@ -30,11 +30,12 @@ struct DigitsApp: App {
                 do {
                     try await store.load()
                 } catch {
-                    errorWrapper = ErrorWrapper(error: error, guidance: "Digits will load sample data and continue.")
+                    errorWrapper = ErrorWrapper(error: error, guidance: "Digits was unable to load data.")
                 }
             }
             .sheet(item: $errorWrapper) {
-                store.contacts = Contact.sampleData
+                //store.contacts = Contact.sampleData
+                store.contacts = []
             } content: { wrapper in
                 ErrorView(errorWrapper: wrapper)
             }
