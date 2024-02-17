@@ -47,7 +47,7 @@ struct AppInfoSheet: View {
                 .bold()
                 .font(.system(size: 24.0))
                 .padding([.top], 10)
-            Text("Digits Quiz does not collect, store, or transmit any contact information to external servers. All contact data is processed locally on your device for the sole purpose of being used in quizzes.")
+            Text("Digits Quiz does not collect any information. All data is processed and stored locally on the user’s device.\nDigits Quiz does not use any third-party software and runs no advertisements.\nThe source code of Digits Quiz is public, and can be found at https://github.com/mcmckinley/Digits.")
                 .font(.system(size: 18.0))
 
             Spacer()

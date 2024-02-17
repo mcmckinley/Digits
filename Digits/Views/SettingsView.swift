@@ -110,7 +110,7 @@ struct SettingsView: View {
                 .alert(isPresented: $loadDataAlert) {
                     Alert(
                         title: Text("Load contacts from device"),
-                        message: Text("This will reset your contact data. Continue?"),
+                        message: Text("This will reset Digits's data. Continue?"),
                         primaryButton: .cancel(Text("Cancel")),
                         secondaryButton: .default(Text("Continue"), action: {
                             requestContactsAccess()
