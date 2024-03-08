@@ -50,11 +50,9 @@ struct AllContactsView: View {
             }
         }
      */
-    
+    /*
     var body: some View {
         NavigationStack {
-            
-            
             List {
                 ForEach($contacts) { $contact in
                     /*
@@ -73,6 +71,28 @@ struct AllContactsView: View {
             //.searchable(text: $searchText)
             .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
             .navigationTitle("All Contacts")
+        }
+    }
+     */
+    
+    //var inputArray: [String] = contacts
+    
+    @State var groupedArray: [String: [Contact]] = [:]
+    var body: some View {
+        List {
+            ForEach(groupedArray.keys.sorted(), id: \.self) {key in
+                Section(header: Text(key)) {
+                    ForEach(groupedArray[key]!) {contact in
+                        Text(contact.name)
+                    }
+                }
+            }
+        }
+        .onAppear {
+            groupedArray = Dictionary(
+                grouping: contacts,
+                by: { $0.name.prefix(1).uppercased() }
+            ).mapValues{$0.sorted()}
         }
     }
 }

@@ -9,7 +9,7 @@
 
 import Foundation
 
-struct Contact: Identifiable, Codable {
+struct Contact: Identifiable, Codable, Comparable {
     var id: UUID
     var name: String
     var number: String
@@ -49,6 +49,10 @@ struct Contact: Identifiable, Codable {
         return "(\(areaCode)) \(prefix)-\(suffix)"
     }
     
+    // Allows for alphabetical comparison of contacts.
+    static func < (lhs: Contact, rhs: Contact) -> Bool {
+        return lhs.name < rhs.name
+    }
     
     static let sampleData: [Contact] =
     [
