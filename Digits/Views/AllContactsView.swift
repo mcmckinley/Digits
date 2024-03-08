@@ -15,43 +15,6 @@ struct AllContactsView: View {
     @State private var searchText = ""
     /*
     var body: some View {
-        Form {
-            Section(header: Text("contacts to show in app")) {
-                ForEach($contacts) { $contact in
-                    if contact.allowed {
-                        HStack {
-                            Text(contact.name)
-                            Spacer()
-                            Button(action : {
-                                contact.enabled = false
-                                contact.allowed = false
-                            }) {
-                                Image(systemName: "minus.circle.fill")
-                            }
-                        }
-                    }
-                }
-            }
-            Section(header: Text("contacts to ignore")) {
-                ForEach($contacts) { $contact in
-                    if !contact.allowed {
-                        HStack {
-                            Text(contact.name)
-                            Spacer()
-                            Button(action : {
-                                contact.allowed = true
-                                contact.enabled = true
-                            }) {
-                                Image(systemName: "plus.circle.fill")
-                            }
-                        }
-                    }
-                }
-            }
-        }
-     */
-    /*
-    var body: some View {
         NavigationStack {
             List {
                 ForEach($contacts) { $contact in
@@ -73,7 +36,8 @@ struct AllContactsView: View {
             .navigationTitle("All Contacts")
         }
     }
-     */
+    */
+    
     
     //var inputArray: [String] = contacts
     
@@ -82,28 +46,31 @@ struct AllContactsView: View {
         List {
             ForEach(groupedArray.keys.sorted(), id: \.self) {key in
                 Section(header: Text(key)) {
-                    /*
-                    ForEach(groupedArray[key]!) {contact in
-                        Text(contact.name)
-                    }
-                     */
+                    
                     // Works, but very slow, do NOT use.
                     ForEach($contacts) {$contact in
-                        if contact.name.prefix(1) == key {
+                        if contact.name.prefix(1) == key && (searchText == "" || contact.name.contains(searchText)){
                             MiniContactCard(contact: $contact)
                         }
-                    }
-                    
-                    
+                    }       
                 }
             }
         }
+        
+        // TODO: Sort the contact dictionary so that empty keys are ignored.
+        // This will require that groupedArray be updated based on searchText changing.
+        // Maybe create a new function called sortContacts
+        
+        // Sort the contacts into a dictionary, where each key corresponds to their first initial.
         .onAppear {
             groupedArray = Dictionary(
                 grouping: contacts,
                 by: { $0.name.prefix(1).uppercased() }
             ).mapValues{$0.sorted()}
         }
+        // Search bar
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
+        .navigationTitle("All Contacts")
     }
 }
 

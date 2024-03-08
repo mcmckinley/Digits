@@ -56,11 +56,8 @@ struct MiniContactCard: View {
                 }
             }
             .padding(5)
-            
         }
- 
     }
-    
 }
 
 struct MiniContactCard_Previews: PreviewProvider {
