@@ -82,9 +82,19 @@ struct AllContactsView: View {
         List {
             ForEach(groupedArray.keys.sorted(), id: \.self) {key in
                 Section(header: Text(key)) {
+                    /*
                     ForEach(groupedArray[key]!) {contact in
                         Text(contact.name)
                     }
+                     */
+                    // Works, but very slow, do NOT use.
+                    ForEach($contacts) {$contact in
+                        if contact.name.prefix(1) == key {
+                            MiniContactCard(contact: $contact)
+                        }
+                    }
+                    
+                    
                 }
             }
         }
