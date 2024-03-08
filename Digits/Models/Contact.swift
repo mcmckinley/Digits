@@ -49,7 +49,7 @@ struct Contact: Identifiable, Codable {
         return "(\(areaCode)) \(prefix)-\(suffix)"
     }
     
-    /*
+    
     static let sampleData: [Contact] =
     [
         Contact(name: "Ones",   number: "1111111111", enabled: true,  allowed: true),
@@ -65,8 +65,8 @@ struct Contact: Identifiable, Codable {
         Contact(name: "Nines",  number: "9999999999"),
       
     ]
-     */
-    static let sampleData: [Contact] = []
+     
+    // static let sampleData: [Contact] = []
     
     static var emptyContact: Contact {
         Contact(name: "", number: "")

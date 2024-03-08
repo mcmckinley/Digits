@@ -12,6 +12,8 @@ import SwiftUI
 struct AllContactsView: View {
     @Binding var contacts: [Contact]
     
+    @State private var searchText = ""
+    /*
     var body: some View {
         Form {
             Section(header: Text("contacts to show in app")) {
@@ -46,7 +48,31 @@ struct AllContactsView: View {
                     }
                 }
             }
+        }
+     */
+    
+    var body: some View {
+        NavigationStack {
             
+            
+            List {
+                ForEach($contacts) { $contact in
+                    /*
+                    NavigationLink {
+                        Text(contact.name)
+                    } label: {
+                        Text(contact.name)
+                    }
+                    */
+                    
+                    ContactCard(contact: $contact)
+                    
+                    
+                }
+            }
+            //.searchable(text: $searchText)
+            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
+            .navigationTitle("All Contacts")
         }
     }
 }
