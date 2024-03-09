@@ -13,64 +13,43 @@ struct AllContactsView: View {
     @Binding var contacts: [Contact]
     
     @State private var searchText = ""
-    /*
-    var body: some View {
-        NavigationStack {
-            List {
-                ForEach($contacts) { $contact in
-                    /*
-                    NavigationLink {
-                        Text(contact.name)
-                    } label: {
-                        Text(contact.name)
-                    }
-                    */
-                    
-                    ContactCard(contact: $contact)
-                    
-                    
-                }
-            }
-            //.searchable(text: $searchText)
-            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
-            .navigationTitle("All Contacts")
-        }
-    }
-    */
     
+    @State var groupedContacts: [String: [Contact]] = [:]
     
-    //var inputArray: [String] = contacts
-    
-    @State var groupedArray: [String: [Contact]] = [:]
     var body: some View {
         List {
-            ForEach(groupedArray.keys.sorted(), id: \.self) {key in
-                Section(header: Text(key)) {
-                    
-                    // Works, but very slow, do NOT use.
-                    ForEach($contacts) {$contact in
-                        if contact.name.prefix(1) == key && (searchText == "" || contact.name.contains(searchText)){
-                            MiniContactCard(contact: $contact)
+            // Nothing in the search bar: divide the results into sections
+            if searchText.isEmpty {
+                ForEach(groupedContacts.keys.sorted(), id: \.self) {key in
+                    Section(header: Text(key)) {
+                        // Works, but very slow, do NOT use.
+                        ForEach($contacts) {$contact in
+                            if contact.name.prefix(1) == key {
+                                MiniContactCard(contact: $contact)
+                            }
                         }
-                    }       
+                    }
+                }
+            }
+            // If the user enters something in the search bar, don't sort by sections
+            else {
+                ForEach($contacts) {$contact in
+                    if contact.name.uppercased().contains(searchText.uppercased()){ // case insensitive
+                        MiniContactCard(contact: $contact)
+                    }
                 }
             }
         }
-        
-        // TODO: Sort the contact dictionary so that empty keys are ignored.
-        // This will require that groupedArray be updated based on searchText changing.
-        // Maybe create a new function called sortContacts
-        
-        // Sort the contacts into a dictionary, where each key corresponds to their first initial.
+        // Sort the contacts array into a dictionary
         .onAppear {
-            groupedArray = Dictionary(
+            groupedContacts = Dictionary(
                 grouping: contacts,
                 by: { $0.name.prefix(1).uppercased() }
             ).mapValues{$0.sorted()}
         }
         // Search bar
         .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
-        .navigationTitle("All Contacts")
+        .navigationTitle("Select Contacts")
     }
 }
 
