@@ -21,16 +21,18 @@ struct MiniContactCard: View {
                     .font(.system(size: 14))
                     .bold()
                 Spacer()
-                Text(contact.numberFull)
-                    .font(.system(size: 14))
-                    .lineLimit(1)  // Set the maximum number of lines to 1
-                    .truncationMode(.tail)
-                Button(action: {
-                    contact.allowed = false
-                    contact.enabled = false
+                if contact.numbers.count == 0 {
+                    Text(contact.numbers[0].number)
+                        .font(.system(size: 14))
+                        .lineLimit(1)  // Set the maximum number of lines to 1
+                        .truncationMode(.tail)
+                    Button(action: {
+                        contact.allowed = false
+                        contact.enabled = false
 
-                }) {
-                    Image(systemName: "checkmark.circle.fill")
+                    }) {
+                        Image(systemName: "checkmark.circle.fill")
+                    }
                 }
             }
             .padding(5)
@@ -42,10 +44,12 @@ struct MiniContactCard: View {
                         .font(.system(size: 14))
                         .bold()
                     Spacer()
-                    Text(contact.numberFull)
-                        .font(.system(size: 14))
-                        .lineLimit(1)  // Set the maximum number of lines to 1
-                        .truncationMode(.tail)
+                    if contact.numbers.count == 0 {
+                        Text(contact.numbers[0].number)
+                            .font(.system(size: 14))
+                            .lineLimit(1)  // Set the maximum number of lines to 1
+                            .truncationMode(.tail)
+                    }
                 }
                 .foregroundColor(ContactCard.darkGrey)
                 Button(action: {

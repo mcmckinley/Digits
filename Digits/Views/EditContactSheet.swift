@@ -14,24 +14,28 @@ struct EditContactSheet: View {
     @Binding var contact: Contact
     
     var body: some View {
-        Form {
-            Section(header: Text("Contact name")){
-                TextField("Contact name", text: $contact.name)
-            }
-            Section(header: Text("Contact's digits")){
-                TextField("Phone number", text: $contact.editingNumber)
-                    .bold()
-                    .onChange(of: contact.editingNumber) { _, newValue in
-                        if newValue.count == 10 {
-                            contact.number = contact.editingNumber
+        NavigationStack {
+            List {
+                // Make sections for each number type
+                ForEach($contact.numbers) { $number in
+                    
+                    Section(header: Text(number.type)) {
+                        TextField("Phone number", text: $number.editingNumber)
+                            .bold()
+                            .onChange(of: number.editingNumber) { _, newValue in
+                                if newValue.count == 10 {
+                                    number.number = number.editingNumber
+                                }
+                            }
+                        HStack {
+                            Text("Formatted: ")
+                            Spacer()
+                            Text(number.editingNumber.count == 10 ? number.numberFull : "Please enter 10 digits")
                         }
                     }
-                HStack {
-                    Text("Formatted: ")
-                    Spacer()
-                    Text(contact.editingNumber.count == 10 ? contact.numberFull : "Please enter 10 digits")
                 }
             }
+            .navigationTitle(contact.name)
         }
     }
 }

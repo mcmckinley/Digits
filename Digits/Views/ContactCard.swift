@@ -22,14 +22,15 @@ struct ContactCard: View {
                 Text(contact.name)
                     .font(.system(size: 20))
                     .bold()
-                
-                Spacer()
-                Text(contact.numberFull)
-                    .bold()
-                Button(action: {
-                    contact.enabled.toggle()
-                }) {
-                    Image(systemName: "minus.circle.fill")
+                if contact.numbers.count == 1 {
+                    Spacer()
+                    Text(contact.numbers[0].number)
+                        .bold()
+                    Button(action: {
+                        contact.enabled.toggle()
+                    }) {
+                        Image(systemName: "minus.circle.fill")
+                    }
                 }
             }
             .padding(5)
@@ -41,8 +42,10 @@ struct ContactCard: View {
                         .font(.system(size: 18))
                         .bold()
                     Spacer()
-                    Text(contact.numberFull)
-                        .bold()
+                    if contact.numbers.count == 1 {
+                        Text(contact.numbers[0].number)
+                            .bold()
+                    }
                 }
                 .foregroundColor(ContactCard.darkGrey)
                 Button(action: {

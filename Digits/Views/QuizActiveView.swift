@@ -13,7 +13,8 @@ import Foundation
 struct QuizActiveView: View {
     @State var contacts: [Contact]
     
-    @State private var contactIndex: Int = 0
+    @State private var questionIndex: Int = 0
+    @State private var questions: [Question] = []
     
     @Binding var responses: [Response]
     
@@ -91,9 +92,9 @@ struct QuizActiveView: View {
         }
 
         responses.append(
-            Response(answer: contacts[contactIndex].number,
+            Response(answer: questions[questionIndex].answer,
                      userResponse: userEntry,
-                     contactName: contacts[contactIndex].name,
+                     contactName: questions[questionIndex].contactName,
                      wasSkipped: skipped
             )
         )
@@ -109,10 +110,10 @@ struct QuizActiveView: View {
             }
             // Increment the contactIndex
             if lastResponse.isCorrect || lastResponse.wasSkipped {
-                if contactIndex == contacts.count-1 {
+                if questionIndex == questions.count-1 {
                     quizIsFinished = true
                 } else {
-                    contactIndex+=1
+                    questionIndex+=1
                 }
             }
         }
@@ -128,7 +129,7 @@ struct QuizActiveView: View {
             // Enter \(person)'s digits
             HStack {
                 Spacer().frame(width: 10)
-                Text("Enter \(contacts[contactIndex].name)'s digits:")
+                Text("Enter \(questions[questionIndex].contactName)'s digits:")
                     .font(.title)
                     .bold()
                 Spacer()
@@ -199,7 +200,7 @@ struct QuizActiveView: View {
             }
         }
         .onAppear {
-            contacts.shuffle()
+            questions = createQuestions(contacts: contacts)
         }
         
     }

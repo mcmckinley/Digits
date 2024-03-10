@@ -43,12 +43,19 @@ struct SettingsView: View {
         
         do {
             try store.enumerateContacts(with: request) { (contact, stop) in
+                print(contact)
                 // Access the contact information
                 let firstName = contact.givenName
                 let lastName = contact.familyName
-                let phoneNumbers = contact.phoneNumbers.map { $0.value.stringValue }
-                var phoneNumber: String = phoneNumbers.count > 0 ? phoneNumbers[0] : "0"
-                
+                //let phoneNumbers = contact.phoneNumbers.map { $0.value.stringValue }
+                //var phoneNumber: String = phoneNumbers.count > 0 ? phoneNumbers[0] : "0"
+                //var phoneNumber
+                print(firstName + " " + lastName)
+                for number in contact.phoneNumbers {
+                    print(number.label ?? "hi")
+                    print(number.value.stringValue)
+                }
+                /*
                 phoneNumber = phoneNumber.replacingOccurrences(of: "+1", with: "")
                     .replacingOccurrences(of: "(", with: "")
                     .replacingOccurrences(of: ")", with: "")
@@ -61,6 +68,7 @@ struct SettingsView: View {
                         contacts.append(Contact(name: firstName + " " + lastName, number: phoneNumber))
                     }
                 }
+                 */
             }
         } catch {
             print("Error fetching contacts: \(error)")
