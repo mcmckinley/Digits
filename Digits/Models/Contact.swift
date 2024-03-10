@@ -54,23 +54,23 @@ struct Contact: Identifiable, Codable, Comparable {
         return lhs.name < rhs.name
     }
     
-    static let sampleData: [Contact] =
-    [
-        Contact(name: "Ones",   number: "1111111111", enabled: true,  allowed: true),
-        Contact(name: "Twos",   number: "2222222222", enabled: true,  allowed: true),
-        Contact(name: "Threes", number: "3333333333", enabled: true,  allowed: true),
-    
-        Contact(name: "Fours",  number: "4444444444", enabled: false, allowed: true),
-        Contact(name: "Fives",  number: "5555555555", enabled: false, allowed: true),
-        Contact(name: "Sixes",  number: "6666666666", enabled: false, allowed: true),
-    
-        Contact(name: "Sevens", number: "7777777777"),
-        Contact(name: "Eights", number: "8888888888"),
-        Contact(name: "Nines",  number: "9999999999"),
-      
-    ]
+//    static let sampleData: [Contact] =
+//    [
+//        Contact(name: "Ones",   number: "1111111111", enabled: true,  allowed: true),
+//        Contact(name: "Twos",   number: "2222222222", enabled: true,  allowed: true),
+//        Contact(name: "Threes", number: "3333333333", enabled: true,  allowed: true),
+//    
+//        Contact(name: "Fours",  number: "4444444444", enabled: false, allowed: true),
+//        Contact(name: "Fives",  number: "5555555555", enabled: false, allowed: true),
+//        Contact(name: "Sixes",  number: "6666666666", enabled: false, allowed: true),
+//    
+//        Contact(name: "Sevens", number: "7777777777"),
+//        Contact(name: "Eights", number: "8888888888"),
+//        Contact(name: "Nines",  number: "9999999999"),
+//      
+//    ]
      
-    // static let sampleData: [Contact] = []
+    static let sampleData: [Contact] = []
     
     static var emptyContact: Contact {
         Contact(name: "", number: "")

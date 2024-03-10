@@ -54,9 +54,7 @@ struct ContactCard: View {
             .padding(5)
             
         }
- 
     }
-    
 }
 
 struct ContactCard_Previews: PreviewProvider {
